@@ -1,6 +1,9 @@
+import 'angular-animate';
+import 'angular-aria';
 import 'angular-material';
 import 'angular-route';
 
+import Applist from './applist/pi-applist';
 import Home from './home/pi-home';
 
 let requires = [
@@ -8,7 +11,9 @@ let requires = [
     'ngRoute'
 ];
 
-let configTheme = ($mdThemingProvider) => {
+let configTheme = ($mdIconProvider, $mdThemingProvider) => {
+    $mdIconProvider
+        .icon('apps', './assets/svg/apps.svg', 24);
     $mdThemingProvider
         .theme('default')
         .primaryPalette('brown')
@@ -17,11 +22,13 @@ let configTheme = ($mdThemingProvider) => {
 
 let configRoutes = ($routeProvider) => {
     $routeProvider
-        .when('/', { template: '<pi-home></pi-home>' });
+        .when('/', { template: '<pi-home></pi-home>' })
+        .when('/apps', { template: '<pi-applist></pi-applist>' });
 };
 
 export default
     angular.module('chumpi-app', requires)
            .config(configTheme)
            .config(configRoutes)
+           .component(Applist.name, Applist.config)
            .component(Home.name, Home.config);
