@@ -1,4 +1,4 @@
-package com.raritan.chumpi.backend;
+package com.raritan.chumpi.backend.perihperal_devices;
 
 
 import com.pi4j.io.gpio.*;
