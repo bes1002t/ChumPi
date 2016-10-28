@@ -1,10 +1,5 @@
 package com.raritan.chumpi.backend.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.raritan.chumpi.backend.IApp;
-
 public class UserSettings {
 
 	private CoffeeRecipe preferredCoffee = null;
