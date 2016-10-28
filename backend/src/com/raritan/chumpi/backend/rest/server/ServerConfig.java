@@ -29,7 +29,7 @@ public class ServerConfig {
 
 			while ((currLine = br.readLine()) != null) {
 				String[] prop = currLine.split("=");
-				String propName = prop[0];
+				String propName = prop[0].trim();
 				String propVal = prop[1].replace("/\"", "");
 
 				switch(propName) {
@@ -38,6 +38,7 @@ public class ServerConfig {
 					case WELCOME_PAGE: welcomePagePath = propVal;
 					break;
 					case ERROR_PAGE: errorPagePath = propVal;
+					break;
 					default: throw new RuntimeException("Unknown Property: " + propName);
 				}
 			}

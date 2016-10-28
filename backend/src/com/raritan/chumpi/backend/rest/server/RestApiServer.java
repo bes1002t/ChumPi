@@ -10,20 +10,20 @@ import org.glassfish.jersey.servlet.ServletContainer;;
 
 public class RestApiServer {
 
-	private final static int PORT = 8080;
+	private final static int PORT = 28080;
 	private Server server;
-	
+
 	private String baseDir;
 	private String[] welcomePagePath;
 	private String errorPagePath;
 	private String ctxPath = "/";
-	
+
 
 	public RestApiServer(ServerConfig serverConfig, ResourceConfig resConfig) {
 		this.baseDir = serverConfig.getBaseDir();
 		this.errorPagePath = serverConfig.getErrorPagePath();
 		this.welcomePagePath = new String[] { serverConfig.getWelcomePagePath() };
-		
+
 		server = new Server(PORT);
 		ServletContextHandler ctx = new ServletContextHandler(ServletContextHandler.SESSIONS);
 		server.setHandler(ctx);
@@ -39,8 +39,8 @@ public class RestApiServer {
 		try {
 			server.start();
 		} catch (Exception e) {
-			server.destroy();
 			e.printStackTrace();
+			server.destroy();
 		}
 	}
 
