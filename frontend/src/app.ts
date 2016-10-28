@@ -2,7 +2,7 @@ import 'angular-material';
 import 'angular-route';
 
 import { AppController } from './AppController';
-import Home from './home/home';
+import Home from './home/pi-home';
 
 let requires = [
     'ngMaterial',
@@ -18,7 +18,7 @@ let configTheme = ($mdThemingProvider) => {
 
 let configRoutes = ($routeProvider) => {
     $routeProvider
-        .when('/', { template: '<home></home>' });
+        .when('/', { template: '<pi-home></pi-home>' });
 };
 
 export default
