@@ -11,7 +11,9 @@ let requires = [
     'ngRoute'
 ];
 
-let configTheme = ($mdThemingProvider) => {
+let configTheme = ($mdIconProvider, $mdThemingProvider) => {
+    $mdIconProvider
+        .icon('apps', './assets/svg/apps.svg', 24);
     $mdThemingProvider
         .theme('default')
         .primaryPalette('brown')
