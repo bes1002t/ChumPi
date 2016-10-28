@@ -2,24 +2,28 @@ package com.raritan.chumpi.backend.data;
 
 public class CoffeeRecipe {
 	
-	public static final CoffeeRecipe DEFAULT = new CoffeeRecipe(0, 0, true, true, 9);
-	/** amount of coffee whitener */
-	private final int amountWhite;
-	/** amount of sugar */
-	private final int amountSugar;
+	enum CoffeeStrength {
+		WEAK, MEDIUM, STRONG
+	}
+	
+	public static final CoffeeRecipe DEFAULT = new CoffeeRecipe(false, false, true, CoffeeStrength.MEDIUM, 9);
+	/** whitener flag */
+	private final boolean whitener;
+	/** do you want sugar */
+	private final boolean sugar;
 	/** it's a mug or it's a cup */
 	private final boolean bigCup;
 	/** strong coffee goes here */
-	private final boolean strong;
+	private final CoffeeStrength strength;
 	/** program selector index. Range is [9, 14] */
 	private final int selector;
 	
-	public CoffeeRecipe(int amountWhite, int amountSugar, boolean bigCup,
-			boolean strong, int selector) {
-		this.amountWhite = amountWhite;
-		this.amountSugar = amountSugar;
+	public CoffeeRecipe(boolean whitener, boolean sugar, boolean bigCup,
+			CoffeeStrength strength, int selector) {
+		this.whitener = whitener;
+		this.sugar = sugar;
 		this.bigCup = bigCup;
-		this.strong = strong;
+		this.strength = strength;
 		if (9 <= selector && 14 >= selector)
 			this.selector = selector;
 		else
@@ -29,10 +33,10 @@ public class CoffeeRecipe {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Whitener: " + amountWhite);
-		sb.append("\nSugar: " + amountSugar);
-		sb.append("\n" + (bigCup?"Big":"Small"));
-		if (strong) sb.append("\nStrong coffee");
+		sb.append("Whitener: " + whitener);
+		sb.append("\nSugar: " + sugar);
+		sb.append("\n" + (bigCup?"Big":"Small") + " Cup");
+		sb.append("\n" + strength + " coffee");
 		sb.append("\nSelected Button: " + selector);
 		return sb.toString();
 	}
