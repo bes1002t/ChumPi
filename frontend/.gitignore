@@ -1,5 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 .project
+.vscode
 
 # compiled output
 /dist
@@ -8,6 +9,7 @@
 # dependencies
 /node_modules
 /bower_components
+/jspm_packages
 
 # generated code
 aot/
