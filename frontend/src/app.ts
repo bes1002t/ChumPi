@@ -1,7 +1,6 @@
 import 'angular-material';
 import 'angular-route';
 
-import { AppController } from './AppController';
 import Home from './home/pi-home';
 
 let requires = [
@@ -25,5 +24,4 @@ export default
     angular.module('chumpi-app', requires)
            .config(configTheme)
            .config(configRoutes)
-           .controller('AppController', AppController)
            .component(Home.name, Home.config);
