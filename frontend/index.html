@@ -12,7 +12,16 @@
   <link rel="stylesheet" href="./assets/app.css"/>
 </head>
 
-<body layout="column">
+<body layout="column" ng-cloak>
+    <md-toolbar ng-if="$root.showToolbar"
+                layout="row" layout-align="space-between center"
+                class="md-toolbar-tools">
+        <md-button ng-click="goHome()" aria-label="Home">
+            <md-icon md-svg-icon="home"></md-icon>
+        </md-button>
+        {{time}}
+    </md-toolbar>
+
     <div flex layout="row">
         <md-content flex id="content">
             <div ng-view style="height: 100%"></div>
