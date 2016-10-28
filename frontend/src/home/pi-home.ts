@@ -2,7 +2,9 @@ class HomeController {
     now: string;
     timer: number;
 
-    constructor(private $scope: ng.IScope) {
+    constructor(private $scope: ng.IScope,
+                private $location: ng.ILocationService)
+    {
         this.updateTime();
         $scope.$on('$destroy', () => {
             clearTimeout(this.timer);
@@ -14,6 +16,10 @@ class HomeController {
         this.now = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
         this.$scope.$applyAsync();
         this.timer = setTimeout(() => this.updateTime(), 1000);
+    }
+
+    openApps() {
+        this.$location.path('/apps');
     }
 }
 
