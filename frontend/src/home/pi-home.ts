@@ -1,8 +1,12 @@
 class HomeController {
-    now: string;
-    timer: number;
+    time: string;
+    date: string;
 
-    constructor(private $scope: ng.IScope) {
+    private timer: number;
+
+    constructor(private $scope: ng.IScope,
+                private $location: ng.ILocationService)
+    {
         this.updateTime();
         $scope.$on('$destroy', () => {
             clearTimeout(this.timer);
@@ -10,10 +14,18 @@ class HomeController {
     }
 
     private updateTime() {
+        let pad = (n: number) => n < 10 ? `0${n}` : `${n}`;
         let now = new Date();
-        this.now = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+        let minutes = pad(now.getMinutes());
+        let seconds = pad(now.getSeconds());
+        this.time = `${now.getHours()}:${minutes}:${seconds}`;
+        this.date = now.toLocaleDateString();
         this.$scope.$applyAsync();
         this.timer = setTimeout(() => this.updateTime(), 1000);
+    }
+
+    openApps() {
+        this.$location.path('/apps');
     }
 }
 
