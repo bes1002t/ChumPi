@@ -18,9 +18,9 @@ class HomeController {
 }
 
 export default {
-    name: 'home',
+    name: 'piHome',
     config: {
-        templateUrl: 'src/home/home.html',
+        templateUrl: 'src/home/pi-home.html',
         controller: HomeController
     }
 };
