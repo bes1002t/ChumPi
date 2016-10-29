@@ -11,11 +11,11 @@ import org.glassfish.jersey.media.sse.SseBroadcaster;
 import org.glassfish.jersey.media.sse.SseFeature;
 
 @Path("/sse")
-public class ResponseEventSender {
+public class EventChannel {
 
 	private SseBroadcaster broadcaster;
 
-	public ResponseEventSender() {
+	public EventChannel() {
 		broadcaster = new SseBroadcaster();
 	}
 
