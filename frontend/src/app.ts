@@ -18,6 +18,7 @@ let requires = [
 let configTheme = ($mdIconProvider, $mdThemingProvider) => {
     $mdIconProvider
         .icon('apps', './assets/svg/apps.svg', 48)
+        .icon('back', './assets/svg/back.svg', 48)
         .icon('home', './assets/svg/home.svg', 48);
     $mdThemingProvider
         .theme('default')
@@ -33,7 +34,7 @@ let configRoutes = ($routeProvider) => {
         .when('/polls', { template: '<pi-polls></pi-polls>', title: 'Polls' });
 };
 
-let initRootScope = ($rootScope: ng.IScope, $location: ng.ILocationService) => {
+let initRootScope = ($rootScope: ng.IScope, $window: ng.IWindowService) => {
     let updateTime = () => {
         let pad = (n: number) => n < 10 ? `0${n}` : `${n}`;
         let now = new Date();
@@ -51,8 +52,8 @@ let initRootScope = ($rootScope: ng.IScope, $location: ng.ILocationService) => {
         $rootScope['title'] = current.$$route.title;
     });
 
-    $rootScope['goHome'] = () => {
-        $location.path('/');
+    $rootScope['back'] = () => {
+        $window.history.back();
     }
 };
 
