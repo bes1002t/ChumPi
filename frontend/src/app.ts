@@ -25,8 +25,8 @@ let configTheme = ($mdIconProvider, $mdThemingProvider) => {
 let configRoutes = ($routeProvider) => {
     $routeProvider
         .when('/', { template: '<pi-home></pi-home>', hideToolbar: true })
-        .when('/apps', { template: '<pi-applist></pi-applist>' })
-        .when('/games/2048', { templateUrl: 'src/games/2048.html' });
+        .when('/apps', { template: '<pi-applist></pi-applist>', title: 'Applications' })
+        .when('/games/2048', { templateUrl: 'src/games/2048.html', title: '2048' });
 };
 
 let initRootScope = ($rootScope: ng.IScope, $location: ng.ILocationService) => {
@@ -44,6 +44,7 @@ let initRootScope = ($rootScope: ng.IScope, $location: ng.ILocationService) => {
 
     $rootScope.$on('$routeChangeSuccess', (_event, current, previous) => {
         $rootScope['showToolbar'] = !current.$$route.hideToolbar;
+        $rootScope['title'] = current.$$route.title;
     });
 
     $rootScope['goHome'] = () => {
