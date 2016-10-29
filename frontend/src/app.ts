@@ -10,6 +10,7 @@ import Applist from './applist/pi-applist';
 import Home from './home/pi-home';
 import Polls from './polls/pi-polls';
 import PollManager from './manage/pi-poll-manager';
+import Xkcd from './comics/pi-xkcd';
 
 let requires = [
     'ngMaterial',
@@ -34,7 +35,8 @@ let configRoutes = ($routeProvider) => {
         .when('/apps', { template: '<pi-applist></pi-applist>', title: 'Applications' })
         .when('/games/2048', { templateUrl: 'src/games/2048.html', title: '2048' })
         .when('/manage/polls', { template: '<pi-poll-manager></pi-poll-manager>', title: 'Manage Polls' })
-        .when('/polls', { template: '<pi-polls></pi-polls>', title: 'Polls' });
+        .when('/polls', { template: '<pi-polls></pi-polls>', title: 'Polls' })
+        .when('/xkcd', { template: '<pi-xkcd></pi-xkcd>', title: 'XKCD' });
 };
 
 let initRootScope = ($rootScope: ng.IScope, $window: ng.IWindowService) => {
@@ -68,4 +70,5 @@ export default
            .component(Home.name, Home.config)
            .component(Polls.name, Polls.config)
            .component(PollManager.name, PollManager.config)
+           .component(Xkcd.name, Xkcd.config)
            .run(initRootScope);
