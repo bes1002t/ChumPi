@@ -6,12 +6,14 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.pi4j.platform.PlatformAlreadyAssignedException;
 import com.pi4j.util.Console;
+import com.pi4j.wiringpi.GpioUtil;
 
 public class ButtonHandler {
 
-
-	public static void main(String args[]) throws InterruptedException, PlatformAlreadyAssignedException {
+	
+	public ButtonHandler() {
 		final Console console = new Console();
+		GpioUtil.enableNonPrivilegedAccess();
 
 		// print program title/header
 		console.title("<-- The Pi4J Project -->", "GPIO Listen Example");
@@ -93,9 +95,9 @@ public class ButtonHandler {
 		col1.addListener(myColListener);
 		col2.addListener(myColListener);
 
-		console.waitForExit();
+		
 
 		// forcefully shutdown all GPIO monitoring threads and scheduled tasks
-		gpio.shutdown();
+		//gpio.shutdown();
 	}
 }
