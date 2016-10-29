@@ -1,11 +1,16 @@
-<div ng-if="!$ctrl.isShowResults"
+<div ng-if="!$ctrl.poll"
+     layout="column" layout-align="center center" layout-fill>
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div ng-if="$ctrl.poll && !$ctrl.isShowResults"
      layout="column" layout-align="space-around center" layout-fill>
-    <h1>{{$ctrl.title}}</h1>
+    <h1>{{$ctrl.poll.question}}</h1>
 
     <md-radio-group ng-model="$ctrl.selected">
-        <md-radio-button ng-repeat="option in $ctrl.options"
+        <md-radio-button ng-repeat="answer in $ctrl.poll.answers"
                          value="{{$index}}">
-            {{option.title}}
+            {{answer.answer}}
         </md-radio-button>
     </md-radio-group>
     <div layout="row" layout-align="center">
@@ -19,18 +24,18 @@
     </div>
 </div>
 
-<div ng-if="$ctrl.isShowResults"
+<div ng-if="$ctrl.poll && $ctrl.isShowResults"
      layout="column" layout-align="space-around center" layout-fill>
-    <h1>{{$ctrl.title}}</h1>
+    <h1>{{$ctrl.poll.question}}</h1>
 
     <div style="width: 50%">
-        <div ng-repeat="option in $ctrl.options">
+        <div ng-repeat="answer in $ctrl.poll.answers">
             <div layout="row" layout-align="space-between">
-                <div>{{option.title}}</div>
-                <div>{{option.votes}} votes</div>
+                <div>{{answer.answer}}</div>
+                <div>{{answer.votes}} votes</div>
             </div>
             <md-progress-linear md-mode="determinate"
-                                value="{{$ctrl.getPercent(option)}}">
+                                value="{{$ctrl.getPercent(answer)}}">
             </md-progress-linear>
         </div>
     </div>
