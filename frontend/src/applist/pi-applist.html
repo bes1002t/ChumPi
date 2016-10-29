@@ -2,12 +2,18 @@
     <md-button style="width: 100px; height: 100px"
                ng-click="$ctrl.goTo('/games/2048')"
                aria-label="2048">
-        2048
+        <div layout="column" layout-align="center center">
+            <md-icon md-svg-icon="apps"></md-icon>
+            <div>2048</div>
+        </div>
     </md-button>
     <md-button style="width: 100px; height: 100px"
                ng-click="$ctrl.goTo('/polls')"
                aria-label="Polls">
-        Polls
+        <div layout="column" layout-align="center center">
+            <md-icon md-svg-icon="poll"></md-icon>
+            Polls
+        </div>
     </md-button>
     <div style="width: 100px; height: 100px"></div>
     <div style="width: 100px; height: 100px"></div>
