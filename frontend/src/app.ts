@@ -19,7 +19,8 @@ let configTheme = ($mdIconProvider, $mdThemingProvider) => {
     $mdIconProvider
         .icon('apps', './assets/svg/apps.svg', 48)
         .icon('back', './assets/svg/back.svg', 48)
-        .icon('home', './assets/svg/home.svg', 48);
+        .icon('home', './assets/svg/home.svg', 48)
+        .icon('poll', './assets/svg/poll.svg', 48);
     $mdThemingProvider
         .theme('default')
         .primaryPalette('brown')
