@@ -1,11 +1,10 @@
 package com.raritan.chumpi.backend.rest.accessors;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 
 import com.raritan.chumpi.backend.data.provider.CalEvent;
 import com.raritan.chumpi.backend.data.provider.Calendar;
@@ -17,7 +16,7 @@ public class CalendarCtrl {
 
 	@GET
 	@Path("/events")
-	public List<CalEvent> getCalEvents(@FormParam("from") Date from, @FormParam("to") Date to) {
-		return cal.getCalEvents(from, to);
+	public List<CalEvent> getCalEvents(@QueryParam("from") String from, @QueryParam("to") String to) {
+		return cal.getCalEvents(null, null);
 	}
 }

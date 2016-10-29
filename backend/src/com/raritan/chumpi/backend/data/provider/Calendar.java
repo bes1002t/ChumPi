@@ -1,11 +1,11 @@
 package com.raritan.chumpi.backend.data.provider;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Calendar {
 
-	public List<CalEvent> getCalEvents(Date from, Date to) {
+	public List<CalEvent> getCalEvents(LocalDate from, LocalDate to) {
 		return null;
 	}
 }
