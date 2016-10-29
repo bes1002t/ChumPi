@@ -11,9 +11,9 @@ public class User {
 	private final int userId;
 	private String name;
 	private final LocalDate birthDay;
-	private final UserSettings settings;
+	private UserSettings settings;
 	private File cvIdImage = null;
-	
+
 	public User(String name, LocalDate birthDay, UserSettings settings) {
 		this(latestId++, name, birthDay, settings);
 	}
@@ -24,28 +24,36 @@ public class User {
 		this.settings = settings;
 		userId = id;
 	}
-	
-	public void addCoffeeOrder(CoffeeRecipe r) {
-		OrderRepository.INSTANCE.createOrder(this, r);
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public int getId() {
-		return userId;
-	}
-	
+
 	public User(String name, LocalDate birthDay) {
 		this(name, birthDay, UserSettings.initialSetting());
 	}
-	
+
+	public UserSettings getUserSettings() {
+		return settings;
+	}
+
+	public void setUserSettings(UserSettings settings) {
+		this.settings = settings;
+	}
+
+	public void addCoffeeOrder(CoffeeRecipe r) {
+		OrderRepository.INSTANCE.createOrder(this, r);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getId() {
+		return userId;
+	}
+
 	public void setCvId(File f) {
 		// TODO check passed file
 		cvIdImage = f;
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
 		if (! (o instanceof User))
@@ -54,19 +62,19 @@ public class User {
 		return other.name.equals(name) &&
 				other.birthDay.equals(birthDay);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = name.hashCode();
 		result = 31 * result + birthDay.hashCode();
 		return result;
 	}
-	
+
 	@Override
 	public String toString() {
 		return userId + name;
 	}
-	
+
 	public String getFullProfile() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(name);
