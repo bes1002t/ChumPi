@@ -3,6 +3,7 @@ package com.raritan.chumpi.backend.data.provider;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -58,7 +59,7 @@ public abstract class AbstractRepository<T> extends GsonCreator {
 			persist(u);
 		}
 	}
-	
+
 	protected void persist(T u) {
 		File uFile = new File(dataStoreLocation + "/" + u.toString().replaceAll("\\s", "_") + fileExtension);
 		String uJson = getGson().toJson(u);
@@ -69,5 +70,9 @@ public abstract class AbstractRepository<T> extends GsonCreator {
 			System.err.println("Could not persist user " + u.toString() + " to data store!");
 			e.printStackTrace();
 		}
+	}
+
+	public Set<T> getAllInstances() {
+		return Collections.unmodifiableSet(cache);
 	}
 }
