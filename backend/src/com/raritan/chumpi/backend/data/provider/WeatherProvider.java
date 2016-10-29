@@ -9,7 +9,10 @@ public class WeatherProvider extends GsonCreator {
 	}
 	
 	public Weather parse(String json) {
-		// FIXME json not parsed successful
-		return getGson().fromJson(json, Weather.class);
+		return getGson().fromJson(json, WeatherWrapper.class).main;
+	}
+	
+	class WeatherWrapper {
+		Weather main;
 	}
 }
