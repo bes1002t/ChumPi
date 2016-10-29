@@ -1,5 +1,5 @@
 package com.raritan.chumpi.backend.rest.accessors;
 
-public class NewsCtrl {
+public abstract class NewsCtrl {
 
 }
