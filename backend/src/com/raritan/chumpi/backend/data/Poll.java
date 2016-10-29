@@ -1,18 +1,28 @@
 package com.raritan.chumpi.backend.data;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Poll {
+	
+	public class Answer {
+		final int index;
+		final String answer;
+		public Answer(int index, String answer) {
+			this.index = index;
+			this.answer = answer;
+		}
+	}
 
 	private static int latestId = 0;
 	private final int pollId;
 	private final String question;
-	private final Map<String, Integer> answerVoteMap = new HashMap<>();
+	private final Map<Answer, Integer> answerVoteMap = new HashMap<>();
 	private final boolean multipleChoice;
 	private final LocalDate dueDate;
 	
@@ -30,17 +40,21 @@ public class Poll {
 		this.multipleChoice = multipleChoice;
 		this.dueDate = dueDate;
 		for (String a : answers) {
-			answerVoteMap.put(a, 0);
+			answerVoteMap.put(new Answer(answerVoteMap.size(), a), 0);
 		}
 	}
 	
-	public Set<String> getAnswers() {
+	public Set<Answer> getAnswers() {
 		return answerVoteMap.keySet();
 	}
 
-	public void voteForAnswer(String text) {
-		int votes = answerVoteMap.get(text);
-		answerVoteMap.put(text, votes + 1);
+	public void voteForAnswer(int index) {
+		if (index < answerVoteMap.size()) {
+			Answer answer = answerVoteMap.keySet().stream().filter(ans -> ans.index == index).
+					collect(Collectors.toList()).get(0);
+			int votes = answerVoteMap.get(answer);
+			answerVoteMap.put(answer, votes + 1);
+		}
 	}
 	
 	public String getQuestion() {
@@ -69,13 +83,16 @@ public class Poll {
 				other.answerVoteMap.equals(answerVoteMap);
 	}
 	
-	public Map<String, Integer> getVotes() {
+	public Map<Answer, Integer> getVotes() {
 		return Collections.unmodifiableMap(answerVoteMap);
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("Poll '" + question + "'");
+		for (Entry<Answer, Integer> vote : answerVoteMap.entrySet()) {
+			sb.append("\n  " + vote.getKey().answer + " (" + vote.getValue() + ")");
+		}
 		return sb.toString();
 	}
 
