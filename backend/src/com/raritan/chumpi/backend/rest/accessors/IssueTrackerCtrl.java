@@ -2,9 +2,9 @@ package com.raritan.chumpi.backend.rest.accessors;
 
 import java.net.URI;
 
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 
 @Path("/issue-tracker")
 public class IssueTrackerCtrl {
@@ -20,14 +20,14 @@ public class IssueTrackerCtrl {
 
 	@GET
 	@Path("/last-tickets")
-	public Boolean getLastTickets(@FormParam("count") int count) {
+	public Boolean getLastTickets(@QueryParam("count") int count) {
 
 		return true;
 	}
 
 	@GET
-	@Path("/ticket-by-id")
-	public Boolean getTicketById(@FormParam("id") int id) {
+	@Path("/ticket")
+	public Boolean getTicketById(@QueryParam("id") int id) {
 
 		return true;
 	}
