@@ -2,7 +2,9 @@ import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
 import 'angular-route';
-import 'jquery';
+
+import * as jquery from 'jquery';
+window['$'] = jquery;
 
 import Applist from './applist/pi-applist';
 import Home from './home/pi-home';
