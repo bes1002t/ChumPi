@@ -4,9 +4,9 @@ package com.raritan.chumpi.backend.perihperal_devices;
 import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
-import com.pi4j.platform.PlatformAlreadyAssignedException;
 import com.pi4j.util.Console;
 import com.pi4j.wiringpi.GpioUtil;
+import com.raritan.chumpi.backend.rest.accessors.EventChannel;
 
 public class ButtonHandler {
 
@@ -78,12 +78,14 @@ public class ButtonHandler {
 							// newly pressed
 							keys[key].status = true;
 							console.println("key " + keys[key].number + " pressed");
+							EventChannel.getInstance().send("keypress:" + keys[key].number);
 						}
 					} else {
 						if (keys[key].status) {
 							// key was pressed, but isn't anymore
 							keys[key].status = false;
 							console.println("key " + keys[key].number + " released");
+							EventChannel.getInstance().send("keyrelease:" + keys[key].number);
 						} else {
 							// not pressed
 						}

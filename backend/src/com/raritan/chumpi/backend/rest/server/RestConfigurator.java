@@ -28,7 +28,7 @@ public class RestConfigurator extends ResourceConfig {
 		register(new CiCtrl());
 		register(new CoffeeStatsCtrl());
 		register(new DilbertComicCtrl());
-		register(new EventChannel());
+		register(EventChannel.getInstance());
 		register(new GalleryCtrl());
 		register(new GolemNewsCtrl());
 		register(new HeiseNewsCtrl());

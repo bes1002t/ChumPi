@@ -13,9 +13,16 @@ import org.glassfish.jersey.media.sse.SseFeature;
 @Path("/sse")
 public class EventChannel {
 
+	private static EventChannel instance;
+
+	public static EventChannel getInstance() {
+		if (instance == null) instance = new EventChannel();
+		return instance;
+	}
+
 	private SseBroadcaster broadcaster;
 
-	public EventChannel() {
+	private EventChannel() {
 		broadcaster = new SseBroadcaster();
 	}
 
