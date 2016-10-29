@@ -1,0 +1,41 @@
+<div ng-if="!$ctrl.isShowResults"
+     layout="column" layout-align="space-around center" layout-fill>
+    <h1>{{$ctrl.title}}</h1>
+
+    <md-radio-group ng-model="$ctrl.selected">
+        <md-radio-button ng-repeat="option in $ctrl.options"
+                         value="{{$index}}">
+            {{option.title}}
+        </md-radio-button>
+    </md-radio-group>
+    <div layout="row" layout-align="center">
+        <md-button ng-disabled="!$ctrl.selected"
+                   ng-click="$ctrl.vote()">
+            Vote
+        </md-button>
+        <md-button ng-click="$ctrl.showResults()">
+            Results
+        </md-button>
+    </div>
+</div>
+
+<div ng-if="$ctrl.isShowResults"
+     layout="column" layout-align="space-around center" layout-fill>
+    <h1>{{$ctrl.title}}</h1>
+
+    <div style="width: 50%">
+        <div ng-repeat="option in $ctrl.options">
+            <div layout="row" layout-align="space-between">
+                <div>{{option.title}}</div>
+                <div>{{option.votes}} votes</div>
+            </div>
+            <md-progress-linear md-mode="determinate"
+                                value="{{$ctrl.getPercent(option)}}">
+            </md-progress-linear>
+        </div>
+    </div>
+
+    <md-button ng-click="$ctrl.back()">
+        Back
+    </md-button>
+</div>

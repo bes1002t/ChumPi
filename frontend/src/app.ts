@@ -6,6 +6,7 @@ import 'jquery';
 
 import Applist from './applist/pi-applist';
 import Home from './home/pi-home';
+import Polls from './polls/pi-polls';
 
 let requires = [
     'ngMaterial',
@@ -26,7 +27,8 @@ let configRoutes = ($routeProvider) => {
     $routeProvider
         .when('/', { template: '<pi-home></pi-home>', hideToolbar: true })
         .when('/apps', { template: '<pi-applist></pi-applist>', title: 'Applications' })
-        .when('/games/2048', { templateUrl: 'src/games/2048.html', title: '2048' });
+        .when('/games/2048', { templateUrl: 'src/games/2048.html', title: '2048' })
+        .when('/polls', { template: '<pi-polls></pi-polls>', title: 'Polls' });
 };
 
 let initRootScope = ($rootScope: ng.IScope, $location: ng.ILocationService) => {
@@ -58,4 +60,5 @@ export default
            .config(configRoutes)
            .component(Applist.name, Applist.config)
            .component(Home.name, Home.config)
+           .component(Polls.name, Polls.config)
            .run(initRootScope);
