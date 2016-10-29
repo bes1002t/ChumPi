@@ -1,7 +1,23 @@
 class HomeController {
+    motd: {
+        heading: string;
+        lines: string[];
+    };
+
     constructor(private $scope: ng.IScope,
                 private $location: ng.ILocationService)
-    {}
+    {
+        this.updateMotd();
+    }
+
+    private updateMotd() {
+        $.getJSON('/rest/motd/get', data => {
+            this.motd = {
+                heading: data.headline,
+                lines: data.message.split("\n")
+            };
+        });
+    }
 
     openApps() {
         this.$location.path('/apps');

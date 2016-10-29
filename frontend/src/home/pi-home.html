@@ -2,7 +2,14 @@
            ng-click="$ctrl.openApps()" aria-label="Apps">
     <md-icon md-svg-icon="apps"></md-icon>
 </md-button>
-<div layout="column" layout-align="center center" layout-fill>
-    <div style='font-size: 80px'>{{$root.time}}</div>
-    <div>{{$root.date}}</div>
+<div layout="column" layout-align="space-around center" layout-fill>
+    <div layout="column" layout-align="center center">
+        <div style='font-size: 80px'>{{$root.time}}</div>
+        <div>{{$root.date}}</div>
+    </div>
+    <div ng-if="$ctrl.motd"
+         layout="column" layout-align="center center">
+        <b>{{$ctrl.motd.heading}}</b>
+        <p ng-repeat="line in $ctrl.motd.lines">{{line}}</p>
+    </div>
 </div>
