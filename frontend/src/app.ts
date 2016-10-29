@@ -25,7 +25,8 @@ let configTheme = ($mdIconProvider, $mdThemingProvider) => {
 let configRoutes = ($routeProvider) => {
     $routeProvider
         .when('/', { template: '<pi-home></pi-home>', hideToolbar: true })
-        .when('/apps', { template: '<pi-applist></pi-applist>' });
+        .when('/apps', { template: '<pi-applist></pi-applist>' })
+        .when('/games/2048', { templateUrl: 'src/games/2048.html' });
 };
 
 let initRootScope = ($rootScope: ng.IScope, $location: ng.ILocationService) => {
