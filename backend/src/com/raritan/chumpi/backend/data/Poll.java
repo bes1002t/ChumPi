@@ -2,27 +2,43 @@ package com.raritan.chumpi.backend.data;
 
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.raritan.chumpi.backend.data.provider.PollRepository;
 
 public class Poll {
 	
 	public class Answer {
 		final int index;
 		final String answer;
-		public Answer(int index, String answer) {
+		int votes;
+		public Answer(int index, String answer, int votes) {
 			this.index = index;
 			this.answer = answer;
+			this.votes = votes;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (! (obj instanceof Answer))
+				return false;
+			Answer other = (Answer) obj;
+			return other.index == index && other.answer.equals(answer);
+		}
+		@Override
+		public int hashCode() {
+			return index * 31 + answer.hashCode();
+		}
+		public String toString() {
+			return "" + index + answer.substring(0, Math.min(30, answer.length()));
 		}
 	}
 
 	private static int latestId = 0;
 	private final int pollId;
 	private final String question;
-	private final Map<Answer, Integer> answerVoteMap = new HashMap<>();
+	private final Set<Answer> answers = new HashSet<>();
 	private final boolean multipleChoice;
 	private final LocalDate dueDate;
 	
@@ -40,21 +56,21 @@ public class Poll {
 		this.multipleChoice = multipleChoice;
 		this.dueDate = dueDate;
 		for (String a : answers) {
-			answerVoteMap.put(new Answer(answerVoteMap.size(), a), 0);
+			this.answers.add(new Answer(this.answers.size(), a, 0));
 		}
 	}
 	
 	public Set<Answer> getAnswers() {
-		return answerVoteMap.keySet();
+		return Collections.unmodifiableSet(answers);
 	}
 
 	public void voteForAnswer(int index) {
-		if (index < answerVoteMap.size()) {
-			Answer answer = answerVoteMap.keySet().stream().filter(ans -> ans.index == index).
+		if (index < answers.size()) {
+			Answer answer = answers.stream().filter(ans -> ans.index == index).
 					collect(Collectors.toList()).get(0);
-			int votes = answerVoteMap.get(answer);
-			answerVoteMap.put(answer, votes + 1);
+			answer.votes++;
 		}
+		PollRepository.INSTANCE.update(this);
 	}
 	
 	public String getQuestion() {
@@ -80,20 +96,24 @@ public class Poll {
 				other.question.equals(question) &&
 				other.multipleChoice == multipleChoice &&
 				other.dueDate.equals(dueDate) &&
-				other.answerVoteMap.equals(answerVoteMap);
+				other.answers.equals(answers);
 	}
 	
-	public Map<Answer, Integer> getVotes() {
-		return Collections.unmodifiableMap(answerVoteMap);
+	public Set<Answer> getVotes() {
+		return Collections.unmodifiableSet(answers);
+	}
+	
+	public String toText() {
+		StringBuilder sb = new StringBuilder("Poll '" + question + "'");
+		for (Answer vote : answers) {
+			sb.append("\n  " + vote.answer + " (" + vote.votes + ")");
+		}
+		return sb.toString();
 	}
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("Poll '" + question + "'");
-		for (Entry<Answer, Integer> vote : answerVoteMap.entrySet()) {
-			sb.append("\n  " + vote.getKey().answer + " (" + vote.getValue() + ")");
-		}
-		return sb.toString();
+		return pollId + question.substring(0, Math.min(30, question.length()));
 	}
 
 	public LocalDate getDueDate() {

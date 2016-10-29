@@ -49,4 +49,9 @@ public class PollRepository extends AbstractRepository<Poll> {
 	protected Class<Poll> getRepoType() {
 		return Poll.class;
 	}
+
+	public void update(Poll poll) {
+		persist(poll);
+	}
+	
 }
