@@ -2,8 +2,6 @@ package com.raritan.chumpi.backend.data.provider;
 
 import java.time.LocalDate;
 import java.util.Set;
-import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.raritan.chumpi.backend.data.Poll;
@@ -45,5 +43,10 @@ public class PollRepository extends AbstractRepository<Poll> {
 		cache.add(p);
 		persist(p);
 		return p;
+	}
+
+	@Override
+	protected Class<Poll> getRepoType() {
+		return Poll.class;
 	}
 }

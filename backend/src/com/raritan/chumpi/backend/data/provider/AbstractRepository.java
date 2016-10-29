@@ -2,7 +2,7 @@ package com.raritan.chumpi.backend.data.provider;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,19 +11,19 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 import com.raritan.chumpi.backend.rest.server.GsonCreator;
 
 public abstract class AbstractRepository<T> extends GsonCreator {
 	
 	protected final Set<T> cache = new HashSet<>();
-	private final Type repoType = new TypeToken<T>(){}.getType();
 	private final File dataStoreLocation;
 	private final String fileExtension = ".json";
 	
+	abstract protected Class<T> getRepoType();
+	
 	protected AbstractRepository() {
 		createGson();
-		dataStoreLocation = new File("datastore/" + repoType.getTypeName() + "s/");
+		dataStoreLocation = new File("datastore/" + getRepoType().getSimpleName() + "s/");
 	}
 
 	// only for testing
@@ -40,7 +40,7 @@ public abstract class AbstractRepository<T> extends GsonCreator {
 		for (File f : (List<File>) FileUtils.listFiles(dataStoreLocation, 
 				TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE)) {
 			try {
-				T u = getGson().fromJson(FileUtils.readFileToString(f), repoType);
+				T u = getGson().fromJson(FileUtils.readFileToString(f), getRepoType());
 				cache.add(u);
 				System.out.println("added " + u);
 			} catch (JsonSyntaxException e) {
@@ -58,7 +58,7 @@ public abstract class AbstractRepository<T> extends GsonCreator {
 			persist(u);
 		}
 	}
-	
+
 	protected void persist(T u) {
 		File uFile = new File(dataStoreLocation + "/" + u.toString().replaceAll("\\s", "_") + fileExtension);
 		String uJson = getGson().toJson(u);
@@ -69,5 +69,9 @@ public abstract class AbstractRepository<T> extends GsonCreator {
 			System.err.println("Could not persist user " + u.toString() + " to data store!");
 			e.printStackTrace();
 		}
+	}
+
+	public Set<T> getAllInstances() {
+		return Collections.unmodifiableSet(cache);
 	}
 }

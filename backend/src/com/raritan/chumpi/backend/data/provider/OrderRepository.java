@@ -16,5 +16,10 @@ public class OrderRepository extends AbstractRepository<Order> {
 		persist(o);
 		return o;
 	}
+
+	@Override
+	protected Class<Order> getRepoType() {
+		return Order.class;
+	}
 	
 }

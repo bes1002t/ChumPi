@@ -41,4 +41,9 @@ public class UserRepository extends AbstractRepository<User> {
 		throw new UnsupportedOperationException("Edit user not yet implemented");
 	}
 
+	@Override
+	protected Class<User> getRepoType() {
+		return User.class;
+	}
+
 }
