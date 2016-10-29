@@ -3,8 +3,10 @@ package com.raritan.chumpi.backend.data;
 import java.io.File;
 import java.time.LocalDate;
 
+import com.raritan.chumpi.backend.data.provider.OrderRepository;
+
 public class User {
-	
+
 	private static int latestId = 0;
 	private final int userId;
 	private String name;
@@ -21,6 +23,10 @@ public class User {
 		this.birthDay = birthDay;
 		this.settings = settings;
 		userId = id;
+	}
+	
+	public void addCoffeeOrder(CoffeeRecipe r) {
+		OrderRepository.INSTANCE.createOrder(this, r);
 	}
 	
 	public String getName() {
