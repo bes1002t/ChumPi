@@ -4,7 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
-import com.raritan.chumpi.backend.data.provider.CoffeeStatistic;
+import com.raritan.chumpi.backend.data.CoffeeStatistic;
 
 @Path("/coffee")
 public class CoffeeStatsCtrl {
