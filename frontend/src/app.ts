@@ -6,6 +6,8 @@ import 'angular-route';
 import * as jquery from 'jquery';
 window['$'] = jquery;
 
+import { EventService } from './events/EventService';
+
 import Applist from './applist/pi-applist';
 import Home from './home/pi-home';
 import Polls from './polls/pi-polls';
@@ -62,13 +64,19 @@ let initRootScope = ($rootScope: ng.IScope, $window: ng.IWindowService) => {
     }
 };
 
+let startEventing = (eventService: EventService) => {
+    eventService.start();
+}
+
 export default
     angular.module('chumpi-app', requires)
            .config(configTheme)
            .config(configRoutes)
+           .service("eventService", EventService)
            .component(Applist.name, Applist.config)
            .component(Home.name, Home.config)
            .component(Polls.name, Polls.config)
            .component(PollManager.name, PollManager.config)
            .component(Xkcd.name, Xkcd.config)
-           .run(initRootScope);
+           .run(initRootScope)
+           .run(startEventing);
