@@ -2,26 +2,28 @@ package com.raritan.chumpi.backend.data;
 
 public class News {
 
-	private final String origin;
+	private final int articleid;
+	private final String url;
 	private final String headline;
-	private final String teaser;
+	private final String abstracttext;
 	
-	public News(String origin, String headline, String teaser) {
-		this.origin = origin;
+	public News(int id, String url, String headline, String teaser) {
+		this.articleid = id;
+		this.url = url;
 		this.headline = headline;
-		this.teaser = teaser;
+		this.abstracttext = teaser;
 	}
 	
-	public String getOrigin() {
-		return origin;
+	public String getUrl() {
+		return url;
 	}
 
 	public String getHeadline() {
 		return headline;
 	}
 
-	public String getTeaser() {
-		return teaser;
+	public String getAbstractText() {
+		return abstracttext;
 	}
-
+	
 }
