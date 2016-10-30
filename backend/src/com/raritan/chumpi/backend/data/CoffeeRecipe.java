@@ -2,7 +2,7 @@ package com.raritan.chumpi.backend.data;
 
 public class CoffeeRecipe {
 	
-	enum CoffeeStrength {
+	public enum CoffeeStrength {
 		WEAK, MEDIUM, STRONG
 	}
 	
@@ -15,7 +15,7 @@ public class CoffeeRecipe {
 	private final boolean bigCup;
 	/** strong coffee goes here */
 	private final CoffeeStrength strength;
-	/** program selector index. Range is [9, 14] */
+	/** program selector index. Range is [4, 14] */
 	private final int selector;
 	
 	public CoffeeRecipe(boolean whitener, boolean sugar, boolean bigCup,
@@ -24,12 +24,16 @@ public class CoffeeRecipe {
 		this.sugar = sugar;
 		this.bigCup = bigCup;
 		this.strength = strength;
-		if (9 <= selector && 14 >= selector)
+		if (4 <= selector && 14 >= selector)
 			this.selector = selector;
 		else
 			this.selector = 9;
 	}
-	
+
+	public int getSelector() {
+		return selector;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

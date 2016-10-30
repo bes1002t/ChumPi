@@ -6,12 +6,21 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.pi4j.util.Console;
 import com.pi4j.wiringpi.GpioUtil;
-import com.raritan.chumpi.backend.rest.accessors.EventChannel;
 
 public class ButtonHandler {
 
-	
+	public interface Listener {
+		public void onButtonEvent(int button, boolean pressed);
+	}
+
+	private Listener listener = null;
+
 	public ButtonHandler() {
+		if (!System.getProperty("os.arch").equals("arm")) {
+			System.out.println("Not running on Raspberry; button handler disabled");
+			return;
+		}
+
 		final Console console = new Console();
 		GpioUtil.enableNonPrivilegedAccess();
 
@@ -78,14 +87,18 @@ public class ButtonHandler {
 							// newly pressed
 							keys[key].status = true;
 							console.println("key " + keys[key].number + " pressed");
-							EventChannel.getInstance().send("keypress:" + keys[key].number);
+							if (listener != null) {
+								listener.onButtonEvent(keys[key].number, true);
+							}
 						}
 					} else {
 						if (keys[key].status) {
 							// key was pressed, but isn't anymore
 							keys[key].status = false;
 							console.println("key " + keys[key].number + " released");
-							EventChannel.getInstance().send("keyrelease:" + keys[key].number);
+							if (listener != null) {
+								listener.onButtonEvent(keys[key].number, true);
+							}
 						} else {
 							// not pressed
 						}
@@ -102,4 +115,9 @@ public class ButtonHandler {
 		// forcefully shutdown all GPIO monitoring threads and scheduled tasks
 		//gpio.shutdown();
 	}
+
+	public void setListener(Listener listener) {
+		this.listener = listener;
+	}
+
 }

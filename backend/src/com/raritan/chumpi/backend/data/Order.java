@@ -1,6 +1,6 @@
 package com.raritan.chumpi.backend.data;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Order {
 	
@@ -8,13 +8,13 @@ public class Order {
 	private final int orderId;
 	private final User user;
 	private final CoffeeRecipe recipe;
-	private final LocalDate date;
+	private final Date date;
 	
-	public Order(User user, CoffeeRecipe recipe, LocalDate date) {
+	public Order(User user, CoffeeRecipe recipe, Date date) {
 		this(latestId++, user, recipe, date);
 	}
 	
-	public Order(int id, User user, CoffeeRecipe recipe, LocalDate date) {
+	public Order(int id, User user, CoffeeRecipe recipe, Date date) {
 		this.orderId = id;
 		this.user = user;
 		this.recipe = recipe;
@@ -22,7 +22,7 @@ public class Order {
 	}
 	
 	public Order(User user, CoffeeRecipe recipe) {
-		this(user, recipe, LocalDate.now());
+		this(user, recipe, new Date());
 	}
 
 	public User getUser() {
@@ -33,7 +33,7 @@ public class Order {
 		return recipe;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 	
@@ -43,22 +43,21 @@ public class Order {
 			return false;
 		
 		Order other = (Order) obj;
-		return other.user.equals(user) &&
+		return (other.user == null ? user == null : other.user.equals(user)) &&
 				other.recipe.equals(recipe) &&
 				other.date.equals(date);
 	}
 	
 	@Override
 	public String toString() {
-		return "" + orderId + "_" + user.getId();
+		return Long.toString(date.getTime() / 1000);
 	}
 	
 	@Override
 	public int hashCode() {
-		int result = user.hashCode();
+		int result = user != null ? user.hashCode() : 0;
 		result = result * 31 + orderId;
 		result = result * 31 + recipe.hashCode();
-		result = result * 31 + user.hashCode();
 		result = result * 31 + date.hashCode();
 		return result;
 	}
