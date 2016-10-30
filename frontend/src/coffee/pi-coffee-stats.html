@@ -1,0 +1,24 @@
+<div ng-if="!$ctrl.orders"
+     layout="column" layout-align="center center" layout-fill>
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div layout="column" ng-if="$ctrl.orders">
+    <h1>Most Wanted (All Time)</h1>
+    <table ng-if="$ctrl.orders">
+        <thead>
+            <tr>
+                <td>Rank</td>
+                <td>Product</td>
+                <td>Orders</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in $ctrl.orders">
+                <td>{{$index + 1}}</td>
+                <td>{{order.product}}</td>
+                <td>{{order.count}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

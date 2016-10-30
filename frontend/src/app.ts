@@ -9,6 +9,7 @@ window['$'] = jquery;
 import { EventService } from './events/EventService';
 
 import Applist from './applist/pi-applist';
+import CoffeeStats from './coffee/pi-coffee-stats';
 import Home from './home/pi-home';
 import Polls from './polls/pi-polls';
 import PollManager from './manage/pi-poll-manager';
@@ -23,6 +24,7 @@ let configTheme = ($mdIconProvider, $mdThemingProvider) => {
     $mdIconProvider
         .icon('apps', './assets/svg/apps.svg', 48)
         .icon('back', './assets/svg/back.svg', 48)
+        .icon('coffee', './assets/svg/coffee.svg', 48)
         .icon('home', './assets/svg/home.svg', 48)
         .icon('poll', './assets/svg/poll.svg', 48);
     $mdThemingProvider
@@ -35,6 +37,7 @@ let configRoutes = ($routeProvider) => {
     $routeProvider
         .when('/', { template: '<pi-home></pi-home>', hideToolbar: true })
         .when('/apps', { template: '<pi-applist></pi-applist>', title: 'Applications' })
+        .when('/coffee', { template: '<pi-coffee-stats></pi-coffee-stats>', title: 'Coffee Statistics' })
         .when('/games/2048', { templateUrl: 'src/games/2048.html', title: '2048' })
         .when('/manage/polls', { template: '<pi-poll-manager></pi-poll-manager>', title: 'Manage Polls' })
         .when('/polls', { template: '<pi-polls></pi-polls>', title: 'Polls' })
@@ -74,6 +77,7 @@ export default
            .config(configRoutes)
            .service("eventService", EventService)
            .component(Applist.name, Applist.config)
+           .component(CoffeeStats.name, CoffeeStats.config)
            .component(Home.name, Home.config)
            .component(Polls.name, Polls.config)
            .component(PollManager.name, PollManager.config)
