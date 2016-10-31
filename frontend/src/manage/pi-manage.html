@@ -1,0 +1,17 @@
+<div layout="column" layout-align="center">
+    <h1>Message of the Day</h1>
+    <md-input-container>
+        <label>Headline</label>
+        <input ng-model="$ctrl.headline">
+    </md-input-container>
+    <md-input-container>
+        <label>Message</label>
+        <textarea ng-model="$ctrl.message"
+                  rows="5" md-maxlength="300" md-select-on-focus>
+        </textarea>
+    </md-input-container>
+    <div layout="row" layout-align="center">
+        <md-button ng-click="$ctrl.saveMotd()">Save</md-button>
+        <md-button ng-click="$ctrl.clearMotd()">Clear</md-button>
+    </div>
+</div>

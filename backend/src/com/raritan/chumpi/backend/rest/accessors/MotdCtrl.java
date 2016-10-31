@@ -1,25 +1,34 @@
 package com.raritan.chumpi.backend.rest.accessors;
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 import com.raritan.chumpi.backend.data.MessageOfTheDay;
+import com.raritan.chumpi.backend.data.provider.MotdStore;
 
 @Path("/motd")
 public class MotdCtrl {
 
-	private MessageOfTheDay motd;
-
-	public MotdCtrl() {
-		String headline = "Raritan Hackaton!";
-		String msg = "lorem ipsum";
-
-		motd = new MessageOfTheDay(headline, msg);
-	}
-
 	@GET
 	@Path("/get")
 	public MessageOfTheDay getMotd() {
-		return motd;
+		return MotdStore.INSTANCE.get();
 	}
+
+	@POST
+	@Path("/set")
+	public void setMotd(@FormParam("headline") String headline,
+	                    @FormParam("message") String message)
+	{
+		MotdStore.INSTANCE.set(new MessageOfTheDay(headline, message));
+	}
+
+	@POST
+	@Path("/clear")
+	public void clearMotd() {
+		MotdStore.INSTANCE.set(null);
+	}
+
 }
