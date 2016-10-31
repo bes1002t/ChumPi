@@ -6,7 +6,8 @@
     <h1 ng-if="$ctrl.view == 'hourly'">Orders by Hour</h1>
 
     <div ng-if="($ctrl.view == 'top_alltime' && !$ctrl.topAllTime) ||
-                ($ctrl.view == 'top_month' && !$ctrl.topMonth)"
+                ($ctrl.view == 'top_month' && !$ctrl.topMonth) ||
+                ($ctrl.view == 'hourly' && !$ctrl.ordersByHour)"
          layout="column" layout-align="center center">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
@@ -41,6 +42,27 @@
                 <td>{{$index + 1}}</td>
                 <td>{{order.product}}</td>
                 <td>{{order.count}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table ng-if="$ctrl.view == 'hourly'">
+        <thead>
+            <tr>
+                <td></td>
+                <td align="center" ng-repeat="hour in $ctrl.hours">{{hour}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="day in $ctrl.days">
+                <td>{{day}}</td>
+                <td ng-repeat="hour in $ctrl.hours">
+                    <svg width="22" height="22">
+                        <circle cx="11" cy="11"
+                                r="{{$ctrl.ordersByHour[$parent.$index][hour] / $ctrl.maxOrders * 11}}">
+                        </circle>
+                    </svg>
+                </td>
             </tr>
         </tbody>
     </table>

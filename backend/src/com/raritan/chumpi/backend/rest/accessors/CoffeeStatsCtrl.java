@@ -1,5 +1,6 @@
 package com.raritan.chumpi.backend.rest.accessors;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,23 @@ public class CoffeeStatsCtrl {
 			ordersByProduct.put(product, orders == null ? 1 : orders + 1);
 		}
 		return ordersByProduct;
+	}
+
+	@GET
+	@Path("/ordersbyhour")
+	public Map<Integer, Integer> getOrdersByHour() {
+		Map<Integer, Integer> ordersByHour = new HashMap<>();
+		OrderRepository.INSTANCE.reloadCache();
+		for (Order order : OrderRepository.INSTANCE.getAllInstances()) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(order.getDate());
+			int day = (cal.get(Calendar.DAY_OF_WEEK) + 5) % 7; // Sunday == 1, we want Monday == 0.
+			int hour = cal.get(Calendar.HOUR_OF_DAY);
+			int hourOfWeek = 24 * day + hour;
+			Integer orders = ordersByHour.get(hourOfWeek);
+			ordersByHour.put(hourOfWeek, orders == null ? 1 : orders + 1);
+		}
+		return ordersByHour;
 	}
 
 }
