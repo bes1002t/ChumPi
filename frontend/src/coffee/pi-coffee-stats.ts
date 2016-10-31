@@ -8,7 +8,11 @@ interface ProductOrders {
 }
 
 class CoffeeStatsController {
-    orders: ProductOrders[];
+    views = [ "top_alltime", "top_month", "hourly" ];
+    view = "top_alltime";
+
+    topAllTime: ProductOrders[];
+    topMonth: ProductOrders[];
 
     private PRODUCTS = {
         // TODO: Sync with actual buttons
@@ -26,23 +30,72 @@ class CoffeeStatsController {
     }
 
     constructor(private $scope: ng.IScope) {
-        $.getJSON("/rest/coffee/ordersbyproduct")
-            .then((orders: OrdersByProduct) => this.update(orders));
+        this.changeView();
     }
 
-    private update(orders: OrdersByProduct) {
-        this.orders = [];
-        for (let productId in orders) {
-            let product = this.PRODUCTS[productId];
-            if (product) {
-                this.orders.push({
-                    product: product,
-                    count: orders[productId] 
-                });
-            }
+    nextView() {
+        let i = this.views.indexOf(this.view) + 1;
+        this.view = this.views[i % this.views.length];
+        this.changeView();
+    }
+
+    prevView() {
+        let i = this.views.indexOf(this.view) + this.views.length - 1;
+        this.view = this.views[i  % this.views.length];
+        this.changeView();
+    }
+
+    changeView() {
+        switch (this.view) {
+            case "top_alltime":
+                this.getTopAllTime();
+                break;
+            case "top_month":
+                this.getTopMonth();
+                break;
         }
-        this.orders.sort((a, b) => b.count - a.count);
-        this.$scope.$applyAsync();
+    }
+
+    private getTopAllTime() {
+        if (this.topAllTime) return;
+
+        $.getJSON("/rest/coffee/ordersbyproduct")
+            .then((orders: OrdersByProduct) => {
+                 this.topAllTime = [];
+                 for (let productId in orders) {
+                     let product = this.PRODUCTS[productId];
+                     if (product) {
+                         this.topAllTime.push({
+                             product: product,
+                             count: orders[productId]
+                         });
+                     }
+                 }
+                 this.topAllTime.sort((a, b) => b.count - a.count);
+                 this.$scope.$applyAsync();
+             });
+    }
+
+    private getTopMonth() {
+        if (this.topMonth) return;
+
+        let start = Math.round(new Date().getTime() / 1000 - 30 * 24 * 3600);
+
+        $.getJSON("/rest/coffee/ordersbyproduct", { from: start })
+            .then((orders: OrdersByProduct) => {
+                 this.topMonth = [];
+                 for (let productId in orders) {
+                     let product = this.PRODUCTS[productId];
+                     if (product) {
+                         this.topMonth.push({
+                             product: product,
+                             count: orders[productId]
+                         });
+                     }
+                 }
+                 this.topMonth.sort((a, b) => b.count - a.count);
+                 this.$scope.$applyAsync();
+             });
     }
 }
 

@@ -1,11 +1,17 @@
-<div ng-if="!$ctrl.orders"
-     layout="column" layout-align="center center" layout-fill>
-    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-</div>
+<div layout="column" layout-align="space-around center" layout-fill
+     md-swipe-left="$ctrl.nextView()" md-swipe-right="$ctrl.prevView()">
 
-<div layout="column" ng-if="$ctrl.orders">
-    <h1>Most Wanted (All Time)</h1>
-    <table ng-if="$ctrl.orders">
+    <h1 ng-if="$ctrl.view == 'top_alltime'">Most Popular (All Time)</h1>
+    <h1 ng-if="$ctrl.view == 'top_month'">Most Popular (Last Month)</h1>
+    <h1 ng-if="$ctrl.view == 'hourly'">Orders by Hour</h1>
+
+    <div ng-if="($ctrl.view == 'top_alltime' && !$ctrl.topAllTime) ||
+                ($ctrl.view == 'top_month' && !$ctrl.topMonth)"
+         layout="column" layout-align="center center">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <table ng-if="$ctrl.view == 'top_alltime' && $ctrl.topAllTime">
         <thead>
             <tr>
                 <td>Rank</td>
@@ -14,11 +20,35 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="order in $ctrl.orders">
+            <tr ng-repeat="order in $ctrl.topAllTime">
                 <td>{{$index + 1}}</td>
                 <td>{{order.product}}</td>
                 <td>{{order.count}}</td>
             </tr>
         </tbody>
     </table>
+
+    <table ng-if="$ctrl.view == 'top_month' && $ctrl.topMonth">
+        <thead>
+            <tr>
+                <td>Rank</td>
+                <td>Product</td>
+                <td>Orders</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in $ctrl.topMonth">
+                <td>{{$index + 1}}</td>
+                <td>{{order.product}}</td>
+                <td>{{order.count}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <md-radio-group layout="row" layout-align="center"
+                    ng-model="$ctrl.view" ng-change="$ctrl.changeView()">
+        <md-radio-button value="top_alltime" aria-label="Top (All Time)"></md-radio-button>
+        <md-radio-button value="top_month" aria-label="Top (Last Month)"></md-radio-button>
+        <md-radio-button value="hourly" aria-label="By Hour"></md-radio-button>
+    </md-radio-group>
 </div>
