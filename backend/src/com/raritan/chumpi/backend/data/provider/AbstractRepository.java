@@ -36,10 +36,10 @@ public abstract class AbstractRepository<T> extends GsonCreator {
 
 	@SuppressWarnings("unchecked")
 	public void reloadCache() {
-		System.out.println("Reload user profiles");
-		cache.clear();
-
 		if (dataStoreLocation.exists()) {
+			System.out.println("Reload user profiles");
+			cache.clear();
+
 			for (File f : (List<File>) FileUtils.listFiles(dataStoreLocation, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE)) {
 				try {
 					T u = getGson().fromJson(FileUtils.readFileToString(f), getRepoType());
