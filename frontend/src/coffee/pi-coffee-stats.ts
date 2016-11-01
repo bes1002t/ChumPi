@@ -31,7 +31,7 @@ class CoffeeStatsController {
         "8": "Coffee with Sugar and Cream",
         "9": "Espresso",
         "10": "Cappucino Choco",
-        "11": "Vanilla Milk"",
+        "11": "Vanilla Milk",
         "12": "Hot Chocolate",
         "13": "Latte Macchiato",
         "14": "Malt Coffee"
