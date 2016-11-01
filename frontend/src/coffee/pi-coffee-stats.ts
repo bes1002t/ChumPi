@@ -25,18 +25,16 @@ class CoffeeStatsController {
     maxOrders: number;
 
     private PRODUCTS = {
-        // TODO: Sync with actual buttons
-        "4": "Coffee, Black",
-        "5": "Coffee with Whitener",
+        "5": "Coffee, Black",
         "6": "Coffee with Sugar",
-        "7": "Coffee with Whitener and Sugar",
-        "8": "Latte Macchiato",
-        "9": "Cappucino",
-        "10": "Tea",
-        "11": "Hot Chocolate",
-        "12": "Malt Coffee",
-        "13": "Vanilla Milk",
-        "14": "Whatever"
+        "7": "Coffee with Cream",
+        "8": "Coffee with Sugar and Cream",
+        "9": "Espresso",
+        "10": "Cappucino Choco",
+        "11": "Vanilla Milk"",
+        "12": "Hot Chocolate",
+        "13": "Latte Macchiato",
+        "14": "Malt Coffee"
     }
 
     constructor(private $scope: ng.IScope) {

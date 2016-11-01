@@ -60,27 +60,27 @@ public class CoffeeWatcher implements ButtonHandler.Listener {
 		lastEvent = now;
 
 		switch (button) {
-			case 0:
-				extraWhitener = !extraWhitener;
-				break;
 			case 1:
 				extraSugar = !extraSugar;
 				break;
 			case 2:
-				large = !large;
+				extraWhitener = !extraWhitener;
 				break;
 			case 3:
 				strength = strength == CoffeeStrength.MEDIUM ? CoffeeStrength.STRONG
 				         : strength == CoffeeStrength.STRONG ? CoffeeStrength.WEAK
 				         : CoffeeStrength.MEDIUM;
 				break;
+			case 4:
+				large = !large;
+				break;
 			default:
 				addOrder(button);
 		}
 	}
 
-	private void addOrder(int index) {
-		if (index < 4 || index > 13) return;
+	private void addOrder(int key) {
+		if (index < 5 || index > 14) return;
 		CoffeeRecipe recipe = new CoffeeRecipe(extraWhitener, extraSugar, large, strength, index);
 		OrderRepository.INSTANCE.createOrder(null, recipe);
 		lastOrder = new Date();
