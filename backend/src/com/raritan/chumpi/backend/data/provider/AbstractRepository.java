@@ -2,6 +2,7 @@ package com.raritan.chumpi.backend.data.provider;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -32,27 +33,29 @@ public abstract class AbstractRepository<T> extends GsonCreator {
 			System.out.println(t);
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void reloadCache() {
 		System.out.println("Reload user profiles");
 		cache.clear();
-		for (File f : (List<File>) FileUtils.listFiles(dataStoreLocation, 
-				TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE)) {
-			try {
-				T u = getGson().fromJson(FileUtils.readFileToString(f), getRepoType());
-				cache.add(u);
-				System.out.println("added " + u);
-			} catch (JsonSyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+		if (dataStoreLocation.exists()) {
+			for (File f : (List<File>) FileUtils.listFiles(dataStoreLocation, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE)) {
+				try {
+					T u = getGson().fromJson(FileUtils.readFileToString(f), getRepoType());
+					cache.add(u);
+					System.out.println("added " + u);
+				} catch (JsonSyntaxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
-	
+
 	public void persistCache() {
 		for (T u : cache) {
 			persist(u);

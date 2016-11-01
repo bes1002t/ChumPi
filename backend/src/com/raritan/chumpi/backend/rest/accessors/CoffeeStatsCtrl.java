@@ -13,7 +13,7 @@ import com.raritan.chumpi.backend.data.CoffeeStatistic;
 import com.raritan.chumpi.backend.data.Order;
 import com.raritan.chumpi.backend.data.provider.OrderRepository;
 
-@Path("/coffee")
+@Path("/orders")
 public class CoffeeStatsCtrl {
 
 	@GET
@@ -23,7 +23,7 @@ public class CoffeeStatsCtrl {
 	}
 
 	@GET
-	@Path("/ordersbyproduct")
+	@Path("/byproduct")
 	public Map<Integer, Integer> getOrdersByProduct(
 			@QueryParam("from") Long from, // optional: start of time range (seconds since epoch)
 			@QueryParam("to") Long to)     // optional: end of time range (seconds since epoch)
@@ -45,7 +45,7 @@ public class CoffeeStatsCtrl {
 	}
 
 	@GET
-	@Path("/ordersbyhour")
+	@Path("/byhour")
 	public Map<Integer, Integer> getOrdersByHour() {
 		Map<Integer, Integer> ordersByHour = new HashMap<>();
 		OrderRepository.INSTANCE.reloadCache();

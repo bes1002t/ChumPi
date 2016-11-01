@@ -70,7 +70,7 @@ class CoffeeStatsController {
     private getTopAllTime() {
         if (this.topAllTime) return;
 
-        $.getJSON("/rest/coffee/ordersbyproduct")
+        $.getJSON("/rest/orders/byproduct")
             .then((orders: OrdersByProduct) => {
                  this.topAllTime = [];
                  for (let productId in orders) {
@@ -92,7 +92,7 @@ class CoffeeStatsController {
 
         let start = Math.round(new Date().getTime() / 1000 - 30 * 24 * 3600);
 
-        $.getJSON("/rest/coffee/ordersbyproduct", { from: start })
+        $.getJSON("/rest/orders/byproduct", { from: start })
             .then((orders: OrdersByProduct) => {
                  this.topMonth = [];
                  for (let productId in orders) {
@@ -112,7 +112,7 @@ class CoffeeStatsController {
     private getOrdersByHour() {
         if (this.ordersByHour) return;
 
-        $.getJSON("/rest/coffee/ordersbyhour")
+        $.getJSON("/rest/orders/byhour")
             .then((orders: OrdersByHour) => {
                  this.ordersByHour = this.days.map(_day => {
                      let o: number[] = [];
