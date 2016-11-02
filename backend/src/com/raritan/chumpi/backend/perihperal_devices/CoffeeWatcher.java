@@ -80,8 +80,8 @@ public class CoffeeWatcher implements ButtonHandler.Listener {
 	}
 
 	private void addOrder(int key) {
-		if (index < 5 || index > 14) return;
-		CoffeeRecipe recipe = new CoffeeRecipe(extraWhitener, extraSugar, large, strength, index);
+		if (key < 5 || key > 14) return;
+		CoffeeRecipe recipe = new CoffeeRecipe(extraWhitener, extraSugar, large, strength, key);
 		OrderRepository.INSTANCE.createOrder(null, recipe);
 		lastOrder = new Date();
 	}
