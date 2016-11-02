@@ -31,9 +31,13 @@ public class PollCtrl {
 			@FormParam("dueDate") String dueDate,
 			@FormParam("choice") List<String> choices
 		) {
-		repo.createPoll(question, multipleChoice, null, choices.toArray(new String[choices.size()]));
-
-		return true;
+		try {
+			repo.createPoll(question, multipleChoice, null, choices.toArray(new String[choices.size()]));
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@POST
@@ -44,13 +48,23 @@ public class PollCtrl {
 			@FormParam("dueDate") String dueDate,
 			@FormParam("choice") List<String> choices
 		) {
-		return false;
+		try {
+			return false;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@POST
 	@Path("/remove")
 	public Boolean removePoll(@FormParam("id") int id) {
-		return false;
+		try {
+			return false;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@POST

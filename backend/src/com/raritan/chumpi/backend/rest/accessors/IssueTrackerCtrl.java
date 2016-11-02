@@ -14,21 +14,33 @@ public class IssueTrackerCtrl {
 	@GET
 	@Path("/last-ticket")
 	public Boolean getLastTicket() {
-
-		return true;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/last-tickets")
 	public Boolean getLastTickets(@QueryParam("count") int count) {
-
-		return true;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/ticket")
 	public Boolean getTicketById(@QueryParam("id") int id) {
-
-		return true;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

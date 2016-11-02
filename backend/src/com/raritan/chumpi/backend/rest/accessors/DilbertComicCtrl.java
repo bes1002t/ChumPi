@@ -16,18 +16,33 @@ public class DilbertComicCtrl {
 	@GET
 	@Path("/random")
 	public Image getRandom() {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/latest")
 	public Image getLatest() {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/image")
 	public Image getImage(@QueryParam("date") String date) {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

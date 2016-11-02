@@ -17,18 +17,33 @@ public class HeiseNewsCtrl {
 	@GET
 	@Path("/random")
 	public News getRandom() {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/list")
 	public List<String> getNewsList() {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/news")
 	public News getNewsByIndex(@QueryParam("index") int index) {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

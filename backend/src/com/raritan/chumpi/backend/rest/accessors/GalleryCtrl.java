@@ -17,12 +17,22 @@ public class GalleryCtrl {
 	@GET
 	@Path("/image")
 	public Image getImageByIndex(@QueryParam("index") int index) {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/overview")
 	public List<String> getGalleryOverview() {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

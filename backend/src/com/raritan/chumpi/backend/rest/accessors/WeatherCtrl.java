@@ -18,12 +18,17 @@ public class WeatherCtrl {
 	@GET
 	@Path("/get")
 	public Weather getWeather(@QueryParam("location") long location) {
-		if (location == 0)
-			location = defaultLocation;
-		return new WeatherProvider()
-				.parse(new RestApiCaller()
-						.call("http://api.openweathermap.org/data/2.5/weather?units=metric&id="
-								+ location + "&appid=" + apikey));
+		try {
+			if (location == 0)
+				location = defaultLocation;
+			return new WeatherProvider()
+					.parse(new RestApiCaller()
+					.call("http://api.openweathermap.org/data/2.5/weather?units=metric&id=" + location + "&appid=" + apikey));
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 }

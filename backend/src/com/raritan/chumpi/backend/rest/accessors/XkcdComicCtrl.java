@@ -15,7 +15,12 @@ public class XkcdComicCtrl {
 	@GET
 	@Path("/random")
 	public String getRandom() {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
@@ -28,16 +33,19 @@ public class XkcdComicCtrl {
 			String u = "http:" + a.attr("src");
 			return u;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		
-		return null;
 	}
 
 	@GET
 	@Path("/image")
 	public String getImage(@QueryParam("date") String date) {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

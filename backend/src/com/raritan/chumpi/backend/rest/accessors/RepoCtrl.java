@@ -1,6 +1,7 @@
 package com.raritan.chumpi.backend.rest.accessors;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -17,18 +18,33 @@ public class RepoCtrl {
 	@GET
 	@Path("/last-commit")
 	public CommitInfo getLastCommit() {
-		return null;
+		try {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/find")
 	public List<CommitInfo> findCommits(@QueryParam("dir") String dir, @QueryParam("count") int count) {
-		return null;
+		try {
+			return new ArrayList<CommitInfo>();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/last-commits")
 	public List<CommitInfo> getLastCommits(@QueryParam("count") int count) {
-		return null;
+		try {
+			return new ArrayList<CommitInfo>();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

@@ -29,18 +29,33 @@ public class UserCtrl {
 	@POST
 	@Path("/add")
 	public Boolean addUser(@FormParam("name") String name, @FormParam("birthday") String birthday) {
-		return false;
+		try {
+			return false;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@POST
 	@Path("/remove")
 	public Boolean removeUser(@FormParam("id") int id) {
-		return false;
+		try {
+			return false;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@POST
 	@Path("/edit")
 	public Boolean editUser(@FormParam("name") String name, @FormParam("birthday") String birthday) {
-		return false;
+		try {
+			return false;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

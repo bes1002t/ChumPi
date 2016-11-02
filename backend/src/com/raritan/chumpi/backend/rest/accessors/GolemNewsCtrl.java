@@ -24,21 +24,32 @@ public class GolemNewsCtrl {
 	@GET
 	@Path("/random")
 	public News getRandom() {
-		return new NewsProvider().parse(new RestApiCaller()
-				.call("http://api.golem.de/api/article/meta/"
-						+ new Random(System.currentTimeMillis())
-								.nextInt(120000) + "/?key=" + apiKey));
+		try {
+			return new NewsProvider().parse(new RestApiCaller()
+					.call("http://api.golem.de/api/article/meta/"
+							+ new Random(System.currentTimeMillis())
+									.nextInt(120000) + "/?key=" + apiKey));
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@GET
 	@Path("/list")
 	public List<News> getNewsList(@QueryParam("amount") int amount) {
-		if (amount == 0)
-			amount = 10; // set to default value
-		List<News> list = new NewsProvider().parseMany(new RestApiCaller()
-				.call("http://api.golem.de/api/article/latest/" + amount
-						+ "/?key=" + apiKey + "&format=json"));
-		return list;
+		try {
+			if (amount == 0)
+				amount = 10; // set to default value
+			List<News> list = new NewsProvider().parseMany(new RestApiCaller()
+					.call("http://api.golem.de/api/article/latest/" + amount
+							+ "/?key=" + apiKey + "&format=json"));
+			return list;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	@GET

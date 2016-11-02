@@ -14,7 +14,12 @@ public class MotdCtrl {
 	@GET
 	@Path("/get")
 	public MessageOfTheDay getMotd() {
-		return MotdStore.INSTANCE.get();
+		try {
+			return MotdStore.INSTANCE.get();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@POST
@@ -22,13 +27,21 @@ public class MotdCtrl {
 	public void setMotd(@FormParam("headline") String headline,
 	                    @FormParam("message") String message)
 	{
-		MotdStore.INSTANCE.set(new MessageOfTheDay(headline, message));
+		try {
+			MotdStore.INSTANCE.set(new MessageOfTheDay(headline, message));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@POST
 	@Path("/clear")
 	public void clearMotd() {
-		MotdStore.INSTANCE.set(null);
+		try {
+			MotdStore.INSTANCE.set(null);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

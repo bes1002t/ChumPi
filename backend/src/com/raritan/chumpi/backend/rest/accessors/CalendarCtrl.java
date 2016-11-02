@@ -17,6 +17,11 @@ public class CalendarCtrl {
 	@GET
 	@Path("/events")
 	public List<CalEvent> getCalEvents(@QueryParam("from") String from, @QueryParam("to") String to) {
-		return cal.getCalEvents(null, null);
+		try {
+			return cal.getCalEvents(null, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
