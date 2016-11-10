@@ -23,10 +23,12 @@ import javax.ws.rs.ext.Provider;
 @Singleton
 public class GsonReader<T> extends GsonCreator implements MessageBodyReader<T> {
 
+	@Override
 	public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
 		return true;
 	}
 
+	@Override
 	public T readFrom(
 			Class<T> type,
 			Type genericType,

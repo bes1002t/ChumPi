@@ -10,9 +10,9 @@ import com.raritan.chumpi.backend.exceptions.PollNotFoundException;
 public class PollRepository extends AbstractRepository<Poll> {
 
 	public static final PollRepository INSTANCE = new PollRepository();
-	
+
 	private PollRepository() {}
-	
+
 	public Poll getPollByQuestion(String question) throws PollNotFoundException {
 		for (Poll p : cache) {
 			if (p.getQuestion().equals(question))
@@ -20,12 +20,12 @@ public class PollRepository extends AbstractRepository<Poll> {
 		}
 		throw new PollNotFoundException();
 	}
-	
+
 	public Set<Poll> getPolls() {
 		return cache.stream()	// some stream magic to filter for valid polls
 				.filter(p -> LocalDate.now().isBefore(p.getDueDate())).collect(Collectors.toSet());
 	}
-	
+
 	public Poll getPoll(int id) throws PollNotFoundException {
 		for (Poll p : cache) {
 			if (p.getId() == id)
@@ -53,5 +53,5 @@ public class PollRepository extends AbstractRepository<Poll> {
 	public void update(Poll poll) {
 		persist(poll);
 	}
-	
+
 }

@@ -6,14 +6,14 @@ public class News {
 	private final String url;
 	private final String headline;
 	private final String abstracttext;
-	
+
 	public News(int id, String url, String headline, String teaser) {
 		this.articleid = id;
 		this.url = url;
 		this.headline = headline;
 		this.abstracttext = teaser;
 	}
-	
+
 	public String getUrl() {
 		return url;
 	}

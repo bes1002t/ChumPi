@@ -1,11 +1,11 @@
 package com.raritan.chumpi.backend.data;
 
 public class CoffeeRecipe {
-	
+
 	public enum CoffeeStrength {
 		WEAK, MEDIUM, STRONG
 	}
-	
+
 	public static final CoffeeRecipe DEFAULT = new CoffeeRecipe(false, false, true, CoffeeStrength.MEDIUM, 9);
 	/** whitener flag */
 	private final boolean whitener;
@@ -17,7 +17,7 @@ public class CoffeeRecipe {
 	private final CoffeeStrength strength;
 	/** program selector index. Range is [5, 14] */
 	private final int selector;
-	
+
 	public CoffeeRecipe(boolean whitener, boolean sugar, boolean bigCup,
 			CoffeeStrength strength, int selector) {
 		this.whitener = whitener;

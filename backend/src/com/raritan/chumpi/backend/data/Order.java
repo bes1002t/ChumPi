@@ -3,24 +3,24 @@ package com.raritan.chumpi.backend.data;
 import java.util.Date;
 
 public class Order {
-	
+
 	private static int latestId = 0;
 	private final int orderId;
 	private final User user;
 	private final CoffeeRecipe recipe;
 	private final Date date;
-	
+
 	public Order(User user, CoffeeRecipe recipe, Date date) {
 		this(latestId++, user, recipe, date);
 	}
-	
+
 	public Order(int id, User user, CoffeeRecipe recipe, Date date) {
 		this.orderId = id;
 		this.user = user;
 		this.recipe = recipe;
 		this.date = date;
 	}
-	
+
 	public Order(User user, CoffeeRecipe recipe) {
 		this(user, recipe, new Date());
 	}

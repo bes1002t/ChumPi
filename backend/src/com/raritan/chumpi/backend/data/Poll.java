@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import com.raritan.chumpi.backend.data.provider.PollRepository;
 
 public class Poll {
-	
+
 	public class Answer {
 		final int index;
 		final String answer;
@@ -44,15 +44,15 @@ public class Poll {
 	private final Set<Answer> answers = new HashSet<>();
 	private final boolean multipleChoice;
 	private final LocalDate dueDate;
-	
+
 	public Poll(String question, boolean multipleChoice, String ... answers) {
 		this(question, multipleChoice, LocalDate.MAX, answers);
 	}
-	
+
 	public Poll(String question, boolean multipleChoice, LocalDate dueDate, String ... answers) {
 		this(latestId++, question, multipleChoice, dueDate, answers);
 	}
-	
+
 	public Poll(int id, String question, boolean multipleChoice, LocalDate dueDate, String ... answers) {
 		this.pollId = id;
 		this.question = question;
@@ -62,7 +62,7 @@ public class Poll {
 			this.answers.add(new Answer(this.answers.size(), a, 0));
 		}
 	}
-	
+
 	public Set<Answer> getAnswers() {
 		return Collections.unmodifiableSet(answers);
 	}
@@ -75,37 +75,37 @@ public class Poll {
 		}
 		PollRepository.INSTANCE.update(this);
 	}
-	
+
 	public String getQuestion() {
 		return question;
 	}
-	
+
 	public int getId() {
 		return pollId;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return super.hashCode();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (! (obj instanceof Poll))
 			return false;
 		Poll other = (Poll) obj;
-		
+
 		return other.pollId == pollId &&
 				other.question.equals(question) &&
 				other.multipleChoice == multipleChoice &&
 				other.dueDate.equals(dueDate) &&
 				other.answers.equals(answers);
 	}
-	
+
 	public Set<Answer> getVotes() {
 		return Collections.unmodifiableSet(answers);
 	}
-	
+
 	public String toText() {
 		StringBuilder sb = new StringBuilder("Poll '" + question + "'");
 		for (Answer vote : answers) {
