@@ -41,6 +41,17 @@ public class UserRepository extends AbstractRepository<User> {
 		throw new UnsupportedOperationException("Edit user not yet implemented");
 	}
 
+	public Boolean removeUser(int id) {
+		for (User u : cache) {
+			if (u.getId() == id) {
+				cache.remove(u);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	@Override
 	protected Class<User> getRepoType() {
 		return User.class;

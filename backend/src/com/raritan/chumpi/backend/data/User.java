@@ -45,6 +45,10 @@ public class User {
 		return name;
 	}
 
+	public LocalDate getBirthday() {
+		return birthDay;
+	}
+
 	public int getId() {
 		return userId;
 	}
