@@ -1,7 +1,8 @@
-package com.raritan.chumpi.backend.rest.server;
+package com.raritan.chumpi.backend.rest.serialization;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.raritan.chumpi.backend.data.Weather;
 
 public abstract class GsonCreator {
 
@@ -9,6 +10,7 @@ public abstract class GsonCreator {
 
 	protected void createGson() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Weather.class, new WeatherDeserializer());
 		gson = gsonBuilder.create();
 	}
 

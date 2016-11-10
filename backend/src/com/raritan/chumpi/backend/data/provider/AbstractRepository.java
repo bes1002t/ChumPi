@@ -12,7 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
 import com.google.gson.JsonSyntaxException;
-import com.raritan.chumpi.backend.rest.server.GsonCreator;
+import com.raritan.chumpi.backend.rest.serialization.GsonCreator;
 
 public abstract class AbstractRepository<T> extends GsonCreator {
 	

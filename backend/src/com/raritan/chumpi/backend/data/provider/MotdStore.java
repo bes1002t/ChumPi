@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 
 import com.raritan.chumpi.backend.data.MessageOfTheDay;
-import com.raritan.chumpi.backend.rest.server.GsonCreator;
+import com.raritan.chumpi.backend.rest.serialization.GsonCreator;
 
 public class MotdStore extends GsonCreator {
 

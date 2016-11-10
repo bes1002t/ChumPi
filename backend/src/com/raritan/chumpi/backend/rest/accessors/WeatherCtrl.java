@@ -10,25 +10,25 @@ import com.raritan.chumpi.backend.data.provider.WeatherProvider;
 @Path("/weather")
 public class WeatherCtrl {
 
-	// chumpi_ha(@byom.de)
-	// chumpi2016
-	private final String apikey = "a09a135075c61ac050a7115d92d5f487";
 	private final long defaultLocation = 2803560; // Zwickau
+	private WeatherProvider provider;
+
+	public WeatherCtrl() {
+		provider = new WeatherProvider();
+	}
 
 	@GET
 	@Path("/get")
 	public Weather getWeather(@QueryParam("location") long location) {
 		try {
-			if (location == 0)
-				location = defaultLocation;
-			return new WeatherProvider()
-					.parse(new RestApiCaller()
-					.call("http://api.openweathermap.org/data/2.5/weather?units=metric&id=" + location + "&appid=" + apikey));
+			long tmpLocation = defaultLocation;
+
+			if (location != 0) tmpLocation = location;
+
+			return provider.getWeatherInfo(tmpLocation);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
-
 }

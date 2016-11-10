@@ -1,33 +1,26 @@
 package com.raritan.chumpi.backend.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Weather {
 
-	private double temp;
-	private double pressure;
-	private int humidity;
+	private String city;
+	private List<WeatherData> forecast = new ArrayList<WeatherData>();
 
-	public void setTemp(double temp) {
-		this.temp = temp;
+	public void addWeatherData(WeatherData data) {
+		forecast.add(data);
 	}
 
-	public void setPressure(double pressure) {
-		this.pressure = pressure;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public void setHumidity(int humidity) {
-		this.humidity = humidity;
+	public List<WeatherData> getWeatherData() {
+		return forecast;
 	}
 
-	public double getTemp() {
-		return temp;
+	public String getCity() {
+		return city;
 	}
-
-	public double getPressure() {
-		return pressure;
-	}
-
-	public int getHumidity() {
-		return humidity;
-	}
-
 }

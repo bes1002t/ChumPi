@@ -18,6 +18,8 @@ import com.raritan.chumpi.backend.rest.accessors.UserCtrl;
 import com.raritan.chumpi.backend.rest.accessors.UserSettingsCtrl;
 import com.raritan.chumpi.backend.rest.accessors.WeatherCtrl;
 import com.raritan.chumpi.backend.rest.accessors.XkcdComicCtrl;
+import com.raritan.chumpi.backend.rest.serialization.GsonReader;
+import com.raritan.chumpi.backend.rest.serialization.GsonWriter;
 
 public class RestConfigurator extends ResourceConfig {
 

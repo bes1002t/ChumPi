@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.raritan.chumpi.backend.data.News;
-import com.raritan.chumpi.backend.rest.server.GsonCreator;
+import com.raritan.chumpi.backend.rest.serialization.GsonCreator;
 
 public class NewsProvider extends GsonCreator {
 

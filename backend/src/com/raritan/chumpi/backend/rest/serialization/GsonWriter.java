@@ -1,4 +1,4 @@
-package com.raritan.chumpi.backend.rest.server;
+package com.raritan.chumpi.backend.rest.serialization;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,4 +1,4 @@
-package com.raritan.chumpi.backend.rest.server;
+package com.raritan.chumpi.backend.rest.serialization;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,12 +35,11 @@ public class GsonReader<T> extends GsonCreator implements MessageBodyReader<T> {
 			MultivaluedMap<String, String> httpHeaders,
 			InputStream in
 		) throws IOException, WebApplicationException {
-		
+
 		createGson();
 
 		return getGson().fromJson(convertStreamToString(in), type);
 	}
-
 
 	private String convertStreamToString(InputStream inputStream)
 			throws IOException {

@@ -9,6 +9,7 @@ import javax.ws.rs.QueryParam;
 
 import com.raritan.chumpi.backend.data.News;
 import com.raritan.chumpi.backend.data.provider.NewsProvider;
+import com.raritan.chumpi.backend.rest.ThirdPartyRestProvider;
 
 /**
  * Get the API-Keys from here: http://api.golem.de/apimanage/index.php. API
@@ -25,8 +26,8 @@ public class GolemNewsCtrl {
 	@Path("/random")
 	public News getRandom() {
 		try {
-			return new NewsProvider().parse(new RestApiCaller()
-					.call("http://api.golem.de/api/article/meta/"
+			return new NewsProvider().parse(new ThirdPartyRestProvider()
+					.send("http://api.golem.de/api/article/meta/"
 							+ new Random(System.currentTimeMillis())
 									.nextInt(120000) + "/?key=" + apiKey));
 		} catch(Exception e) {
@@ -41,8 +42,8 @@ public class GolemNewsCtrl {
 		try {
 			if (amount == 0)
 				amount = 10; // set to default value
-			List<News> list = new NewsProvider().parseMany(new RestApiCaller()
-					.call("http://api.golem.de/api/article/latest/" + amount
+			List<News> list = new NewsProvider().parseMany(new ThirdPartyRestProvider()
+					.send("http://api.golem.de/api/article/latest/" + amount
 							+ "/?key=" + apiKey + "&format=json"));
 			return list;
 		} catch(Exception e) {
