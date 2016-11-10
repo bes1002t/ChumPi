@@ -107,4 +107,11 @@ public class WeatherData {
 	public List<WeatherDetails> getDetails() {
 		return details;
 	}
+
+	@Override
+	public String toString() {
+		String className = this.getClass().getSimpleName();
+		return String.format("%s(date=%s, temp=%f, pressure=%f, humidity=%d, cloudiness=%d, windSpeed=%f, windDirec=%f, rain=%f, snow=%f, details=%s)",
+			   className, date.toString(), temp, pressure, humidity, cloudiness, windSpeed, windDirec, rain, snow, details);
+	}
 }

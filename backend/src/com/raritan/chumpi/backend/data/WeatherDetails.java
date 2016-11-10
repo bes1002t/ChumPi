@@ -19,4 +19,10 @@ public class WeatherDetails {
 	public String getDescription() {
 		return descr;
 	}
+
+	@Override
+	public String toString() {
+		String className = this.getClass().getSimpleName();
+		return String.format("%s(name=%s, descr=%s)", className, name, descr);
+	}
 }

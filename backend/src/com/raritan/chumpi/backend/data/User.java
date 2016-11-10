@@ -70,11 +70,6 @@ public class User {
 		return result;
 	}
 
-	@Override
-	public String toString() {
-		return userId + name;
-	}
-
 	public String getFullProfile() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(name);
@@ -84,4 +79,9 @@ public class User {
 		return sb.toString();
 	}
 
+	@Override
+	public String toString() {
+		String className = this.getClass().getSimpleName();
+		return String.format("%s(userId=%d, name=%s, birthDay=%s, settings=%s)", className, userId, name, birthDay.toString(), settings);
+	}
 }

@@ -36,23 +36,18 @@ public class Order {
 	public Date getDate() {
 		return date;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (! (obj instanceof Order))
 			return false;
-		
+
 		Order other = (Order) obj;
 		return (other.user == null ? user == null : other.user.equals(user)) &&
 				other.recipe.equals(recipe) &&
 				other.date.equals(date);
 	}
-	
-	@Override
-	public String toString() {
-		return Long.toString(date.getTime() / 1000);
-	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = user != null ? user.hashCode() : 0;
@@ -62,4 +57,9 @@ public class Order {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		String className = this.getClass().getSimpleName();
+		return String.format("%s(orderId=%d, user=%s, recipe=%s, date=%s)", className, orderId, user, recipe, date.toString());
+	}
 }

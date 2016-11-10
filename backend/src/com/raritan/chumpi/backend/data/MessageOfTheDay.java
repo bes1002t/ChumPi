@@ -17,5 +17,10 @@ public class MessageOfTheDay {
 	public String getMessage() {
 		return message;
 	}
-	
+
+	@Override
+	public String toString() {
+		String className = this.getClass().getSimpleName();
+		return String.format("%s(headline=%s, message=%s)", className, headline, message);
+	}
 }

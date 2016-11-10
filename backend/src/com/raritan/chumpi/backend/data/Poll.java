@@ -30,8 +30,11 @@ public class Poll {
 		public int hashCode() {
 			return index * 31 + answer.hashCode();
 		}
+
+		@Override
 		public String toString() {
-			return "" + index + answer.substring(0, Math.min(30, answer.length()));
+			String className = this.getClass().getSimpleName();
+			return String.format("%s(index=%d, answer=%s, votes=%d)", className, index, answer.substring(0, Math.min(30, answer.length())), votes);
 		}
 	}
 
@@ -110,14 +113,14 @@ public class Poll {
 		}
 		return sb.toString();
 	}
-	
-	@Override
-	public String toString() {
-		return pollId + question.substring(0, Math.min(30, question.length()));
-	}
 
 	public LocalDate getDueDate() {
 		return dueDate;
 	}
-	
+
+	@Override
+	public String toString() {
+		String className = this.getClass().getSimpleName();
+		return String.format("%s(pollId=%d, question=%s, multipleChoice=%b, dueDate=%s)", className, pollId, question.substring(0, Math.min(30, question.length())), multipleChoice, dueDate.toString());
+	}
 }

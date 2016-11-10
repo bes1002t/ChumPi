@@ -25,5 +25,10 @@ public class News {
 	public String getAbstractText() {
 		return abstracttext;
 	}
-	
+
+	@Override
+	public String toString() {
+		String className = this.getClass().getSimpleName();
+		return String.format("%s(articleid=%d, url=%s, headline=%s, abstracttext=%s)", className, articleid, url, headline, abstracttext);
+	}
 }

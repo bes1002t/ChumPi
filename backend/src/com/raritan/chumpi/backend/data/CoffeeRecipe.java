@@ -36,13 +36,7 @@ public class CoffeeRecipe {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Whitener: " + whitener);
-		sb.append("\nSugar: " + sugar);
-		sb.append("\n" + (bigCup?"Big":"Small") + " Cup");
-		sb.append("\n" + strength + " coffee");
-		sb.append("\nSelected Button: " + selector);
-		return sb.toString();
+		String className = this.getClass().getSimpleName();
+		return String.format("%s(whitener=%b, sugar=%b, bigCup=%b, strength=%s, selector=%d)", className, whitener, sugar, bigCup, strength, selector);
 	}
-
 }
