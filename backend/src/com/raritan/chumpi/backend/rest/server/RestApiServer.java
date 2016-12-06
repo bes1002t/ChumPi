@@ -66,6 +66,7 @@ public class RestApiServer {
 	private void setErrorHandler(ServletContextHandler ctx) {
 		ErrorPageErrorHandler errorHandler = new ErrorPageErrorHandler();
 		errorHandler.addErrorPage(404, errorPagePath);
+		errorHandler.setShowStacks(true);
 		ctx.setErrorHandler(errorHandler);
 	}
 }
