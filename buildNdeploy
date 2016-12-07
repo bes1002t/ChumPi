@@ -1,18 +1,11 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-	echo "Usage: ./Build <ip>"
+	echo "Usage: ./buildNdeploy <ip>"
 	exit 1
 fi
 
-pushd frontend
-npm install
-node_modules/.bin/tsc
-popd
-
-pushd backend
-mvn install
-popd
+./build
 
 scp backend/target/*.jar admin@$1:ChumPi/
 scp -r frontend admin@$1:ChumPi/
