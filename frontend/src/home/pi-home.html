@@ -1,15 +1,12 @@
-<md-button class="md-fab md-fab-top-left"
-           ng-click="$ctrl.openApps()" aria-label="Apps">
+<md-button class="md-fab md-fab-top-left" ng-click="$ctrl.openApps()" aria-label="Apps">
     <md-icon md-svg-icon="apps"></md-icon>
 </md-button>
-<div layout="column" layout-align="space-around center" layout-fill
-     md-colors="{background: 'indigo-500'}">
-    <div layout="column" layout-align="center center">
+<div layout="column" layout-fill md-colors="{background: 'indigo-500'}">
+    <div id="clock">
         <div style='font-size: 80px'>{{$root.time}}</div>
         <div>{{$root.date}}</div>
     </div>
-    <div ng-if="$ctrl.motd"
-         layout="column" layout-align="center center">
+    <div ng-if="$ctrl.motd" id="motd">
         <b>{{$ctrl.motd.heading}}</b>
         <p ng-repeat="line in $ctrl.motd.lines">{{line}}</p>
     </div>

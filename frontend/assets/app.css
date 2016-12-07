@@ -93,6 +93,16 @@ md-button.menuBtn > md-icon {
   max-width: 500px;
 }
 
+#clock {
+  text-align: center;
+  margin-top: 30vh;
+}
+
+#motd {
+  text-align: center;
+  margin-top: 20vh;
+}
+
 /* Utils */
 
 .content-wrapper {
