@@ -28,6 +28,12 @@ html, body {
   margin-top: 20vh;
 }
 
+/* Icons */
+md-icon.applist-icon {
+    height: 5vw;
+    width: 5vw;
+}
+
 /* Utils */
 
 .content-wrapper {
