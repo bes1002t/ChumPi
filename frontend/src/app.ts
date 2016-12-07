@@ -22,15 +22,41 @@ let requires = [
 ];
 
 let configTheme = ($mdIconProvider, $mdThemingProvider) => {
+    $mdThemingProvider.definePalette('grey', {
+      '50': 'fafafa',
+      '100': 'f5f5f5',
+      '200': 'eeeeee',
+      '300': 'e0e0e0',
+      '400': 'bdbdbd',
+      '500': '9e9e9e',
+      '600': '757575',
+      '700': '616161',
+      '800': '424242',
+      '900': '212121',
+      'A100': 'fafafa',
+      'A200': 'f5f5f5',
+      'A400': 'e0e0e0',
+      'A700': '757575',
+      'contrastDefaultColor': '100',
+      'contrastDarkColors': ['50', '100', '200', '300'],
+      'contrastLightColors': ['900', '800', '700', '600'],
+    });
+
     $mdIconProvider
         .icon('apps', './assets/svg/apps.svg', 48)
         .icon('back', './assets/svg/back.svg', 48)
         .icon('coffee', './assets/svg/coffee.svg', 48)
         .icon('home', './assets/svg/home.svg', 48)
         .icon('poll', './assets/svg/poll.svg', 48);
+
     $mdThemingProvider
         .theme('default')
-        .primaryPalette('brown')
+        .primaryPalette('indigo', {
+          'default': '500'
+         })
+        .backgroundPalette('grey', {
+          'default': '50'
+         })
         .accentPalette('red');
 };
 

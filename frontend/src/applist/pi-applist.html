@@ -1,35 +1,25 @@
-<div layout="row" layout-align="space-around" layout-fill>
-    <md-button style="width: 100px; height: 100px"
-               ng-click="$ctrl.goTo('/games/2048')"
-               aria-label="2048">
+<div layout="row" layout-align="space-around center" class="content-container">
+    <md-button ng-click="$ctrl.goTo('/games/2048')" aria-label="2048">
         <div layout="column" layout-align="center center">
             <md-icon md-svg-icon="apps"></md-icon>
             <div>2048</div>
         </div>
     </md-button>
-    <md-button style="width: 100px; height: 100px"
-               ng-click="$ctrl.goTo('/polls')"
-               aria-label="Polls">
+    <md-button ng-click="$ctrl.goTo('/polls')" aria-label="Polls">
         <div layout="column" layout-align="center center">
             <md-icon md-svg-icon="poll"></md-icon>
             Polls
         </div>
     </md-button>
-    <md-button style="width: 100px; height: 100px"
-               ng-click="$ctrl.goTo('/coffee')"
-               aria-label="Statistics">
+    <md-button ng-click="$ctrl.goTo('/coffee')" aria-label="Statistics">
         <div layout="column" layout-align="center center">
             <md-icon md-svg-icon="coffee"></md-icon>
             Statistics
         </div>
     </md-button>
-    <md-button style="width: 100px; height: 100px"
-               ng-click="$ctrl.goTo('/xkcd')"
-               aria-label="XKCD">
+    <md-button ng-click="$ctrl.goTo('/xkcd')" aria-label="XKCD">
         <div layout="column" layout-align="center center">
             XKCD
         </div>
     </md-button>
-    <div style="width: 100px; height: 100px"></div>
-    <div style="width: 100px; height: 100px"></div>
 </div>
