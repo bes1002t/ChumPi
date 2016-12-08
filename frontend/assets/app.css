@@ -3,6 +3,7 @@
 }
 
 html, body {
+  cursor: none !important;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   height: 100%;
