@@ -31,7 +31,7 @@ public class GsonWriter<T> extends GsonCreator implements MessageBodyWriter<T> {
 					throws IOException, WebApplicationException {
 		createGson();
 
-		httpHeaders.get("Content-Type").add("charset=UTF-8");
+		httpHeaders.get("Content-Type").add("application/json;charset=UTF-8");
 		entityStream.write(getGson().toJson(t).getBytes("UTF-8"));
 	}
 }
