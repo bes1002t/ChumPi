@@ -1,17 +1,18 @@
 {
-    "compilerOptions": {
-        "outDir": "dist",
-        "target": "es5",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "sourceMap": false,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "removeComments": false,
-        "noImplicitAny": false
-    },
-    "include": [
-	"src/**/*.ts",
-	"include/**/*.d.ts"
-    ]
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ES5",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false
+  },
+  "include": [
+    "src/**/*.ts",
+    "include/**/*.d.ts"
+  ],
+  "compileOnSave": true
 }
