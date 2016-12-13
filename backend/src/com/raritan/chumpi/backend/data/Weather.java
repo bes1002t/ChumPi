@@ -27,6 +27,6 @@ public class Weather {
 	@Override
 	public String toString() {
 		String className = this.getClass().getSimpleName();
-		return String.format("%s(city=%f, forecast=%s", className, city, forecast);
+		return String.format("%s(city=%s, forecast=%s", className, city, forecast);
 	}
 }
