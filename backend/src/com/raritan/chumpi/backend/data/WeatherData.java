@@ -10,6 +10,10 @@ public class WeatherData {
 
 	// Temperatur in Celsius
 	private double temp;
+	// Min temperatur in Celsius
+	private double tempMin;
+	// Max temperatur in Celsius
+	private double tempMax;
 	// Atmospheric pressure on the sea level in hPa
 	private double pressure;
 	// Humidity in %
@@ -34,6 +38,14 @@ public class WeatherData {
 
 	public void setTemp(double temp) {
 		this.temp = temp;
+	}
+
+	public void setTempMin(double temp) {
+		this.tempMin = temp;
+	}
+
+	public void setTempMax(double temp) {
+		this.tempMax = temp;
 	}
 
 	public void setPressure(double pressure) {
@@ -72,8 +84,12 @@ public class WeatherData {
 		return date;
 	}
 
-	public double getTemp() {
-		return temp;
+	public double getTempMin() {
+		return tempMin;
+	}
+
+	public double getTempMax() {
+		return tempMax;
 	}
 
 	public double getPressure() {
@@ -111,7 +127,7 @@ public class WeatherData {
 	@Override
 	public String toString() {
 		String className = this.getClass().getSimpleName();
-		return String.format("%s(date=%s, temp=%f, pressure=%f, humidity=%d, cloudiness=%d, windSpeed=%f, windDirec=%f, rain=%f, snow=%f, details=%s)",
-			   className, date.toString(), temp, pressure, humidity, cloudiness, windSpeed, windDirec, rain, snow, details);
+		return String.format("%s(date=%s, temp=%f, tempMin=%f, tempMax=%f, pressure=%f, humidity=%d, cloudiness=%d, windSpeed=%f, windDirec=%f, rain=%f, snow=%f, details=%s)",
+			   className, date.toString(), temp, tempMin, tempMax, pressure, humidity, cloudiness, windSpeed, windDirec, rain, snow, details);
 	}
 }

@@ -28,6 +28,8 @@ public class WeatherDeserializer implements JsonDeserializer<Weather> {
 		private final static String ATTR_DATE = "dt_txt";
 		private final static String ATTR_MAIN = "main";
 			private final static String ATTR_TEMP = "temp";
+			private final static String ATTR_TEMP_MIN = "temp_min";
+			private final static String ATTR_TEMP_MAX = "temp_max";
 			private final static String ATTR_PRESSURE = "pressure";
 			private final static String ATTR_HUMIDITY = "humidity";
 		private final static String ATTR_DETAILS = "weather";
@@ -73,6 +75,8 @@ public class WeatherDeserializer implements JsonDeserializer<Weather> {
 
 		JsonElement jsonWeatherData = getVal(elem, ATTR_MAIN);
 		double temp = getDoubleVal(jsonWeatherData, ATTR_TEMP);
+		double tempMin = getDoubleVal(jsonWeatherData, ATTR_TEMP_MIN);
+		double tempMax = getDoubleVal(jsonWeatherData, ATTR_TEMP_MAX);
 		double pressure = getDoubleVal(jsonWeatherData, ATTR_PRESSURE);
 		Integer humidity = getIntVal(jsonWeatherData, ATTR_HUMIDITY);
 
@@ -87,6 +91,8 @@ public class WeatherDeserializer implements JsonDeserializer<Weather> {
 		}
 
 		data.setTemp(temp);
+		data.setTempMin(tempMin);
+		data.setTempMax(tempMax);
 		data.setPressure(pressure);
 		data.setHumidity(humidity);
 		data.setCloudiness(cloudiness);
