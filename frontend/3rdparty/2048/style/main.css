@@ -10,41 +10,41 @@ body {
 
 .container {
   display: inline-block;
-  height: 100vh;
 }
 
 .heading {
   display: inline-block;
-  margin: 8vh;
+  margin-top: 2vh;
+  margin-left: 6vw;
 }
 
 .score-container, .best-container {
   position: relative;
   background: #bbada0;
-  padding: 2vh 2vh;
-  font-size: 3vh;
-  height: 6vh;
-  line-height: 2vh;
+  padding: 2vh;
+  font-size: 6vh;
+  height: 14vh;
+  line-height: 6vh;
   font-weight: bold;
   border-radius: 0.5vh;
   color: white;
-  margin-top: 10px;
+  margin-top: 2vh;
   text-align: center;
 }
 
 .score-container:after, .best-container:after {
   display: block;
-  margin-top: 1vh;
+  margin-top: 2vh;
   text-transform: uppercase;
-  font-size: 3vh;
-  line-height: 3vh;
+  font-size: 5vh;
+  line-height: 5vh;
   text-align: center;
   color: #eee4da;
 }
 
 .score-container .score-addition, .best-container .score-addition {
   position: absolute;
-  right: 30px;
+  right: 3vh;
   color: red;
   font-size: 3vh;
   line-height: 3vh;
@@ -72,12 +72,12 @@ body {
   background: #8f7a66;
   border-radius: 0.5vh;
   margin: 2vh;
-  padding: 4vh;
+  padding: 5vh;
   text-decoration: none;
   color: #f9f6f2;
   text-align: center;
-  font-size: 3vh;
-  line-height: 2vh;
+  font-size: 6vh;
+  line-height: 6vh;
 }
 
 a {
