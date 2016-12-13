@@ -45,7 +45,6 @@ public class WeatherDeserializer implements JsonDeserializer<Weather> {
 		private final static String ATTR_SNOW = "snow";
 			private final static String ATTR_SNOW_DETAIL = "3h";
 
-
 	@Override
 	public Weather deserialize(JsonElement jsonElem, Type type, JsonDeserializationContext ctx) throws JsonParseException {
 		return getWeatherObject(jsonElem);

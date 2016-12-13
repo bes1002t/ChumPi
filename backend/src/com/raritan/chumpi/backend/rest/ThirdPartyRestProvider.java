@@ -9,8 +9,6 @@ import java.net.URL;
 public class ThirdPartyRestProvider {
 
 	public String send(String apiUrl) throws IOException, RuntimeException {
-		System.out.println(apiUrl);
-
 		URL url = new URL(apiUrl);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
