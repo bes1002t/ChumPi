@@ -1,88 +1,64 @@
-interface Answer {
-    index: number;
-    answer: string;
-    votes: number;
+interface WeatherDetails {
+  name: string;
+  descr: string;
 }
 
-interface Poll {
-    pollId: number;
-    question: string;
-    answers: Answer[];
+interface WeatherData {
+  date: Date;
+  temp: number;
+  tempMin: number;
+  tempMax: number;
+  pressure: number;
+  humidity: number;
+  cloudiness: number;
+  windSpeed: number;
+  windDirec: number;
+  rain: number;
+  snow: number
+  details: WeatherDetails[];
 }
 
-interface Option {
-    title: string;
-    votes: number;
+interface Weather {
+  city: string;
+  forecast: WeatherData[];
 }
 
-class PollsController {
-    poll: Poll;
-    selected: string;
-    isShowResults: boolean;
-    totalVotes: number;
+class WeatherController {
+  isRainy: boolean;
+  isSnowy: boolean;
+  isCloudy: boolean;
+  city: string;
+  forecast: WeatherData;
 
-    constructor() {
-        $.getJSON('/rest/polls/get', (polls: Poll[]) => {
-            if (polls && polls.length) {
-                this.poll = polls[polls.length - 1];
-            } else {
-                // Fake poll
-                this.poll = {
-                    pollId: 42,
-                    question: "Welches Bier magst Du am liebsten",
-                    answers: [
-                        { index: 0, answer: "Beck's", votes: 3 },
-                        { index: 1, answer: "Fiedler", votes: 7 },
-                        { index: 2, answer: "Kozel", votes: 5 },
-                        { index: 3, answer: "Schöfferhofer", votes: 4 },
-                        { index: 4, answer: "Zwickl", votes: 6 }
-                    ]
-                };
-            }
+  constructor() {
+      let today = new Date();
+      today.setHours(0,0,0,0);
+
+      $.getJSON('/rest/weather/get', (weather: Weather) => {
+        this.city = weather.city;
+
+        let filteredArray = weather.forecast.filter(data => {
+          let date = new Date(data.date);
+          data.date = date;
+
+          return (date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear());
         });
-    }
 
-    vote() {
-        let answer = this.poll.answers[+this.selected];
-        ++answer.votes;
-
-        if (this.poll.pollId) {
-            $.ajax({
-                url: '/rest/polls/vote',
-                type: 'POST',
-                data: {
-                    pollId: this.poll.pollId,
-                    choiceIndex: answer.index
-                }
-            });
+        if(filteredArray.length) {
+          let sortedArray = filteredArray.sort((a, b) => a.date.getTime() - b.date.getTime());
+          this.forecast = sortedArray[0]
+          this.isRainy = this.forecast.details.some(detail => { return (detail.descr.toLowerCase().indexOf("rain") >= 0) });
+          this.isSnowy = this.forecast.details.some(detail => { return (detail.descr.toLowerCase().indexOf("snow") >= 0) });
+          this.isCloudy = this.forecast.cloudiness > 60
         }
-
-        this.showResults();
-    }
-
-    showResults() {
-        this.totalVotes = 0;
-        for (let answer of this.poll.answers) {
-            this.totalVotes += answer.votes;
-        }
-        this.isShowResults = true;
-    }
-
-    back() {
-        this.isShowResults = false;
-        this.selected = null;
-    }
-
-    getPercent(answer: Answer) {
-        if (!this.totalVotes) return 0;
-        return answer.votes / this.totalVotes * 100;
-    }
+      });
+  }
 }
 
 export default {
-    name: 'piPolls',
+    name: 'piWeather',
     config: {
-        templateUrl: 'src/polls/pi-polls.html',
-        controller: PollsController
+        templateUrl: 'src/weather/pi-weather.html',
+        controller: WeatherController
     }
 };

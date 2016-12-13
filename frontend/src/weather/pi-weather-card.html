@@ -1,0 +1,28 @@
+<md-card layout="column" md-colors="{background: 'background', color: 'grey-700'}">
+    <md-card-title class="card-title" layout="row">
+        <md-card-title-text class="md-headline" layout="column" layout-align="center center">
+            {{$ctrl.city}}
+        </md-card-title-text>
+        <md-card-title-text class="md-subheadline" layout="column" layout-align="center center">
+            <span>{{$ctrl.forecast.date | date:'dd. MMM yyyy'}}</span>
+            <span>{{$ctrl.forecast.date | date:'HH:mm'}} Uhr</span>
+        </md-card-title-text>
+    </md-card-title>
+
+    <div layout="row" layout-align="center center">
+        <div layout="column" layout-align="center center" class="card-icon">
+            <md-icon ng-if="$ctrl.isRainy" md-svg-icon="raindrop" class="raindrop"></md-icon>
+            <md-icon ng-if="$ctrl.isSnowy" md-svg-icon="snowflake" class="card-icon snow"></md-icon>
+            <md-icon ng-if="!$ctrl.isRainy && !$ctrl.isSnowy && $ctrl.isCloudy" md-svg-icon="cloud1" class="card-icon clouds"></md-icon>
+            <md-icon ng-if="!$ctrl.isRainy && !$ctrl.isSnowy && !$ctrl.isCloudy" md-svg-icon="sun" class="card-icon sun"></md-icon>
+
+            <span id="weather-descr" class="tempSubText" ng-repeat="(key, value) in $ctrl.forecast.details">{{value.descr}}</span>
+        </div>
+
+        <div layout="column" layout-align="center center" layout-fill>
+            <span class="tempSubText" md-colors="{color: 'grey-500'}">{{$ctrl.forecast.tempMax| number:1}}°C</span>
+            <span id="tempText">{{$ctrl.forecast.temp| number:1}}°C</span>
+            <span class="tempSubText" md-colors="{color: 'grey-500'}">{{$ctrl.forecast.tempMin| number:1}}°C</span>
+        </div>
+    </div>
+</md-card>

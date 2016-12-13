@@ -1,46 +1,15 @@
-<div ng-if="!$ctrl.poll"
-     layout="column" layout-align="center center" layout-fill>
+<div ng-if="!$ctrl.forecast" layout="column" layout-align="center center" layout-fill>
     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 </div>
 
-<div ng-if="$ctrl.poll && !$ctrl.isShowResults"
-     layout="column" layout-align="space-around center" layout-fill>
-    <h1>{{$ctrl.poll.question}}</h1>
-
-    <md-radio-group ng-model="$ctrl.selected">
-        <md-radio-button ng-repeat="answer in $ctrl.poll.answers"
-                         value="{{$index}}">
-            {{answer.answer}}
-        </md-radio-button>
-    </md-radio-group>
-    <div layout="row" layout-align="center">
-        <md-button ng-disabled="!$ctrl.selected"
-                   ng-click="$ctrl.vote()">
-            Vote
-        </md-button>
-        <md-button ng-click="$ctrl.showResults()">
-            Results
-        </md-button>
-    </div>
+<div ng-if="$ctrl.rainy" layout="column" layout-align="center center" id="rainy" layout-fill>
+    <pi-weather-card />
 </div>
 
-<div ng-if="$ctrl.poll && $ctrl.isShowResults"
-     layout="column" layout-align="space-around center" layout-fill>
-    <h1>{{$ctrl.poll.question}}</h1>
+<div ng-if="$ctrl.snowy" layout="column" layout-align="center center" id="snowy" layout-fill>
+    <pi-weather-card />
+</div>
 
-    <div style="width: 50%">
-        <div ng-repeat="answer in $ctrl.poll.answers">
-            <div layout="row" layout-align="space-between">
-                <div>{{answer.answer}}</div>
-                <div>{{answer.votes}} votes</div>
-            </div>
-            <md-progress-linear md-mode="determinate"
-                                value="{{$ctrl.getPercent(answer)}}">
-            </md-progress-linear>
-        </div>
-    </div>
-
-    <md-button ng-click="$ctrl.back()">
-        Back
-    </md-button>
+<div ng-if="!$ctrl.rainy && !$ctrl.snowy" layout="column" layout-align="center center" id="sunny" layout-fill>
+    <pi-weather-card />
 </div>

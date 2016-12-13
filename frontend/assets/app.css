@@ -1,75 +1,174 @@
 [ng-cloak] {
-  display: none;
+    display: none;
 }
 
 html, body {
-  cursor: none !important;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
+    cursor: none !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .content-container {
-  padding-top: 10vh;
-  padding-left: 10vw;
-  padding-right: 10vw;
+    padding-top: 10vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 /* MOTD */
 
 #clock {
-  text-align: center;
-  margin-top: 30vh;
+    text-align: center;
+    margin-top: 30vh;
 }
 
 #motd {
-  text-align: center;
-  margin-top: 20vh;
+    text-align: center;
+    margin-top: 20vh;
+}
+
+/* Weather */
+md-card {
+    width: 50vw;
+    height: 50vh;
+    padding-left: 4vh;
+    padding-right: 4vh;
+    padding-bottom: 4vh;
+}
+
+.card-title {
+    padding: 0vh; !important
+}
+
+.md-headline {
+    font-size: 6vh;
+    font-weight: 400;
+    line-height: 6vh;
+}
+
+.md-subheadline {
+    font-size: 3vh;
+    font-weight: 1;
+    line-height: 4vh;
+}
+
+md-card md-icon {
+    margin-left: 1vh;
+    margin-top: 0vh;
+    margin-right: 0vh;
+    margin-bottom: 0vh;
+    width: 12vh;
+    height: 12vh;
+}
+
+.card-icon {
+    width: 20vw;
+}
+
+.tempSubText {
+    font-size: 3vh;
+    font-weight: 1;
+    margin-left: 2vh;
+}
+
+#tempText {
+    font-size: 6vh;
+    font-weight: 1;
+    margin-left: 2vh;
+}
+
+#weather-descr {
+    margin-top: 4vh;
+}
+
+.clouds {
+    color: #bbbbbb;
+}
+
+.sun {
+    fill: #ffcd00;
+    stroke: black;
+}
+
+.raindrop g[inkscape\:label="drop"] {
+    fill: #2196f3;
+}
+
+.raindrop g[inkscape\:label="shadow"] {
+    fill: #ffffff;
+}
+
+.snowflake {
+    fill: #ffffff;
+}
+
+#rainy {
+    color: #bbbbbb;
+}
+
+#rainy #clouds {
+    color: #777777;
+}
+
+#snowy {
+    color: #cccccc;
+}
+
+#sunny {
+    color: #91c4ff;
+}
+
+#sunny #clouds {
+    color: #bbbbbb;
 }
 
 /* Icons */
 md-icon.applist-icon {
-    height: 5vw;
-    width: 5vw;
+        height: 5vw;
+        width: 5vw;
 }
 
 /* Utils */
 
 .content-wrapper {
-  position: relative;
+    position: relative;
 }
 
 /* Typography support coming in 0.8.0 */
 
 md-toolbar h1 {
-  font-size: 1.250em;
-  font-weight: 400;
+    font-size: 1.250em;
+    font-weight: 400;
 }
 
 .avatar {
-  position: relative;
-  width: 128px;
-  height: 128px;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  display: inline-block;
-  overflow: hidden;
-  margin: 0px;
-  vertical-align: middle;
-  zoom: 0.70;
-  transform: translateZ(0);
-  -webkit-transform: scale(0.70);
-  -moz-transform: scale(0.70);
+    position: relative;
+    width: 128px;
+    height: 128px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px;
+    vertical-align: middle;
+    zoom: 0.70;
+    transform: translateZ(0);
+    -webkit-transform: scale(0.70);
+    -moz-transform: scale(0.70);
 }
 
 md-bottom-sheet md-icon {
-  margin-right: 20px;
+    margin-right: 20px;
 }
 
 span.name {
-  font-weight: bold;
-  font-size: 1.1em;
-  padding-left: 5px;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding-left: 5px;
 }

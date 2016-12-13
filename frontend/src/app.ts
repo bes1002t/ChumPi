@@ -14,6 +14,7 @@ import Home from './home/pi-home';
 import Manage from './manage/pi-manage';
 import Polls from './polls/pi-polls';
 import PollManager from './manage/pi-poll-manager';
+import Weather from './weather/pi-weather'
 import Xkcd from './comics/pi-xkcd';
 
 let requires = [
@@ -47,7 +48,17 @@ let configTheme = ($mdIconProvider, $mdThemingProvider) => {
         .icon('back', './assets/svg/back.svg', 48)
         .icon('coffee', './assets/svg/coffee.svg', 48)
         .icon('home', './assets/svg/home.svg', 48)
-        .icon('poll', './assets/svg/poll.svg', 48);
+        .icon('poll', './assets/svg/poll.svg', 48)
+        .icon('weather', './assets/svg/weather/weather.svg', 48)
+        .icon('sun', './assets/svg/weather/sun.svg', 48)
+        .icon('raindrop', './assets/svg/weather/raindrop.svg', 48)
+        .icon('snowflake', './assets/svg/weather/snowflake.svg', 48)
+        .icon('cloud1', './assets/svg/weather/cloud1.svg', 48)
+        .icon('cloud2', './assets/svg/weather/cloud2.svg', 48)
+        .icon('tree1', './assets/svg/weather/tree1.svg', 48)
+        .icon('tree2', './assets/svg/weather/tree2.svg', 48)
+        .icon('mountain1', './assets/svg/weather/mountain1.svg', 48)
+        .icon('mountain2', './assets/svg/weather/mountain2.svg', 48);
 
     $mdThemingProvider
         .theme('default')
@@ -69,6 +80,7 @@ let configRoutes = ($routeProvider) => {
         .when('/manage', { template: '<pi-manage></pi-manage>', title: 'Management' })
         .when('/manage/polls', { template: '<pi-poll-manager></pi-poll-manager>', title: 'Manage Polls' })
         .when('/polls', { template: '<pi-polls></pi-polls>', title: 'Polls' })
+        .when('/weather', { template: '<pi-weather></pi-weather>', title: 'Weather' })
         .when('/xkcd', { template: '<pi-xkcd></pi-xkcd>', title: 'XKCD' });
 };
 
@@ -111,6 +123,13 @@ export default
            .component(Manage.name, Manage.config)
            .component(Polls.name, Polls.config)
            .component(PollManager.name, PollManager.config)
+           .component(Weather.name, Weather.config)
            .component(Xkcd.name, Xkcd.config)
            .run(initRootScope)
-           .run(startEventing);
+           .run(startEventing)
+           .directive('piWeatherCard', function () {
+             return {
+               templateUrl: 'src/weather/pi-weather-card.html',
+               require: "^WeatherController"
+             };
+});
