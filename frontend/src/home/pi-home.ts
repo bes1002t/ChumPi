@@ -12,10 +12,12 @@ class HomeController {
 
     private updateMotd() {
         $.getJSON('/rest/motd/get', data => {
-            this.motd = {
-                heading: data.headline,
-                lines: data.message.split("\n")
-            };
+            if (data) {
+                this.motd = {
+                    heading: data.headline,
+                    lines: data.message.split("\n")
+                };
+            }
         });
     }
 
