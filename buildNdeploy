@@ -7,5 +7,6 @@ fi
 
 ./build
 
-scp backend/target/*.jar admin@$1:ChumPi/
-scp -r frontend admin@$1:ChumPi/
+scp backend/target/ChumPi-Backend-*.jar admin@$1:ChumPi/
+tar --exclude=node_modules -cf - frontend/ | \
+	ssh admin@$1 "rm -rf ChumPi/frontend; tar -C ChumPi -xvf -"
